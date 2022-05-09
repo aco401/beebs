@@ -19,7 +19,7 @@
 
 /* Crc - 32 BIT ANSI X3.66 CRC checksum files */
 
-#include "support.h"
+//#include "support.h"
 
 /* This scale factor will be changed to equalise the runtime of the
    benchmarks. */
