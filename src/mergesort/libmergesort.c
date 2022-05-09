@@ -35,6 +35,7 @@
 #include <string.h>
 #include <math.h>
 #include <limits.h>
+#include "alloca.h"
 
 /* various #defines for the C code */
 #ifndef true
