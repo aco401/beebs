@@ -124,7 +124,7 @@ static const float zero   =  0.0;
 #define SCALE_FACTOR    (REPEAT_FACTOR >> 0)
 
 /* Tell the compiler not to optimize out calls in BENCHMARK. */
-volatile float result = 0;
+volatile float newlib_log_result = 0;
 
 
 
@@ -146,11 +146,11 @@ beebs_newlib_log_initialise_benchmark (void)
 int
 beebs_newlib_log_benchmark (void)
 {
-  result = __ieee754_logf(2);
-  result = __ieee754_logf(3);
-  result = __ieee754_logf(4);
-  result = __ieee754_logf(5);
-  result = __ieee754_logf(6);
+  newlib_log_result = __ieee754_logf(2);
+  newlib_log_result = __ieee754_logf(3);
+  newlib_log_result = __ieee754_logf(4);
+  newlib_log_result = __ieee754_logf(5);
+  newlib_log_result = __ieee754_logf(6);
   return 0;
 }
 
