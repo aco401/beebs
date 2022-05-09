@@ -50,7 +50,7 @@ SGLIB_DEFINE_LIST_FUNCTIONS(ilist, ILIST_COMPARATOR, next)
 SGLIB_DEFINE_HASHED_CONTAINER_PROTOTYPES(ilist, HASH_TAB_SIZE, ilist_hash_function)
 SGLIB_DEFINE_HASHED_CONTAINER_FUNCTIONS(ilist, HASH_TAB_SIZE, ilist_hash_function)
 
-int array[100] = {14, 66, 12, 41, 86, 69, 19, 77, 68, 38, 26, 42, 37, 23, 17, 29, 55, 13,
+int sglib_hashtable_array[100] = {14, 66, 12, 41, 86, 69, 19, 77, 68, 38, 26, 42, 37, 23, 17, 29, 55, 13,
   90, 92, 76, 99, 10, 54, 57, 83, 40, 44, 75, 33, 24, 28, 80, 18, 78, 32, 93, 89, 52, 11,
   21, 96, 50, 15, 48, 63, 87, 20, 8, 85, 43, 16, 94, 88, 53, 84, 74, 91, 67, 36, 95, 61,
   64, 5, 30, 82, 72, 46, 59, 9, 7, 3, 39, 31, 4, 73, 70, 60, 58, 81, 56, 51, 45, 1, 6, 49,
@@ -132,10 +132,10 @@ int beebs_sglib_hashtable_benchmark()
   sglib_hashed_ilist_init(htab);
 
   for (i=0; i<100; i++) {
-    ii.i = array[i];
+    ii.i = sglib_hashtable_array[i];
     if (sglib_hashed_ilist_find_member(htab, &ii) == NULL) {
       nn = malloc_beebs(sizeof(struct ilist));
-      nn->i = array[i];
+      nn->i = sglib_hashtable_array[i];
       sglib_hashed_ilist_add(htab, nn);
     }
   }
