@@ -37,7 +37,7 @@
 
 /* self-recursion  */
 
-int fib(int i)
+int recursion_fib(int i)
 
 {
 
@@ -49,7 +49,7 @@ int fib(int i)
 
     return 1;
 
-  return fib(i-1) + fib(i-2);
+  return recursion_fib(i-1) + recursion_fib(i-2);
 
 }
 
@@ -100,7 +100,7 @@ static int n;
 int
 beebs_recursion_benchmark(void)
 {
-  In = fib(n);
+  In = recursion_fib(n);
   return In;
 }
 
