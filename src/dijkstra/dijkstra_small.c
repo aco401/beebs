@@ -251,7 +251,7 @@ int dijkstra_benchmark() {
    return 0;
 }
 
-int verify_benchmark(int unused) {
+int dijkstra_verify_benchmark(int unused) {
    int expected[] = {0, 7, 38, 23, 14, 36, 3, 29, 7, 14, 28, 0, 31, 16, 7, 34,
    31, 28, 1, 39, 39, 25, 0, 32, 14, 3, 32, 9, 26, 43, 12, 14, 40, 0, 21, 43,
    15, 12, 15, 26, 40, 36, 48, 28, 0, 27, 43, 33, 12, 39, 36, 22, 21, 29, 29,
