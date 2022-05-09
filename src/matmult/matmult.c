@@ -107,11 +107,11 @@ values_match (long v1, long v2)
 
 
 
-int Seed;
+int cnt_Seed;
 matrix ArrayA, ArrayB, ResultArray;
 
 void Multiply(matrix A, matrix B, matrix Res);
-void InitSeed(void);
+void matmult_InitSeed(void);
 void Test(matrix A, matrix B, matrix Res);
 void Initialize(matrix Array);
 int RandomInteger(void);
@@ -127,9 +127,9 @@ int beebs_matmult_benchmark()
 /*
  * Initializes the seed used in the random number generator.
  */
-void InitSeed(void)
+void matmult_InitSeed(void)
 {
-   Seed = 0;
+   cnt_Seed = 0;
 }
 
 /*
@@ -146,8 +146,8 @@ void Test(matrix A, matrix B, matrix Res)
  */
 int RandomInteger(void)
 {
-   Seed = ((Seed * 133) + 81) % MOD_SIZE;
-   return (Seed);
+   cnt_Seed = ((cnt_Seed * 133) + 81) % MOD_SIZE;
+   return (cnt_Seed);
 }
 
 /*
@@ -167,7 +167,7 @@ void Multiply(matrix A, matrix B, matrix Res)
 }
 
 void beebs_matmult_initialise_benchmark() {
-   InitSeed();
+   matmult_InitSeed();
    int OuterIndex, InnerIndex;
 
    for (OuterIndex = 0; OuterIndex < UPPERLIMIT; OuterIndex++)
