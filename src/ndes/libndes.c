@@ -234,14 +234,14 @@ void cyfun(unsigned long ir, great k, unsigned long * iout) {
    int value = 0;
 #endif
 
-immense out;
+immense ndes_out;
 static immense inp, key;
 static int newkey, isw;
 
 int
 beebs_ndes_benchmark (void)
 {
-   des(inp, key, &newkey, isw, &out);
+   des(inp, key, &newkey, isw, &ndes_out);
    return 0;
 }
 
@@ -259,9 +259,9 @@ int beebs_ndes_verify_benchmark(int unused) {
   // printf("%lu %lu\n", out.l, out.r);
   unsigned long int exp_l = 2489587893;
   unsigned long int exp_r = 1806503748;
-  if (out.l != exp_l)
+  if (ndes_out.l != exp_l)
     return 0;
-  if (out.r != exp_r)
+  if (ndes_out.r != exp_r)
     return 0;
   return 1;
 }
