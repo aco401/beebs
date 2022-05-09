@@ -79,7 +79,7 @@ int RandomInteger(void);
 
 int Seed;
 
-matrix Array;
+matrix cnt_Array;
 
 int Postotal, Negtotal, Poscnt, Negcnt;
 
@@ -96,7 +96,7 @@ int beebs_cnt_benchmark (void)
 
    //printf("RESULTS OF THE TEST:\n");
 
-   return Test(Array);
+   return Test(cnt_Array);
 
 }
 
@@ -253,7 +253,7 @@ int RandomInteger(void)
 
 void beebs_cnt_initialise_benchmark() {
    InitSeed();
-   Initialize(Array);
+   Initialize(cnt_Array);
 }
 
 int beebs_cnt_verify_benchmark(int nt) {
