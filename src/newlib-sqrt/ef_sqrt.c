@@ -122,18 +122,18 @@ static	const float	one	= 1.0, tiny=1.0e-30;
 #define SCALE_FACTOR    (REPEAT_FACTOR >> 0)
 
 /* Tell the compiler not to optimize out calls in BENCHMARK. */
-volatile float result[6];
+volatile float newlib_sqrt_result[6];
 static int a, b, c, d, e, f;
 
 int
 beebs_newlib_sqrt_benchmark (void)
 {
-  result[0] = __ieee754_sqrtf(a);
-  result[1] = __ieee754_sqrtf(b);
-  result[2] = __ieee754_sqrtf(c);
-  result[3] = __ieee754_sqrtf(d);
-  result[4] = __ieee754_sqrtf(e);
-  result[5] = __ieee754_sqrtf(f);
+  newlib_sqrt_result[0] = __ieee754_sqrtf(a);
+  newlib_sqrt_result[1] = __ieee754_sqrtf(b);
+  newlib_sqrt_result[2] = __ieee754_sqrtf(c);
+  newlib_sqrt_result[3] = __ieee754_sqrtf(d);
+  newlib_sqrt_result[4] = __ieee754_sqrtf(e);
+  newlib_sqrt_result[5] = __ieee754_sqrtf(f);
   return 0;
 }
 
@@ -157,7 +157,7 @@ int beebs_newlib_sqrt_verify_benchmark(int unused)
   //printf("{%f, %f, %f, %f, %f, %f};", result[0], result[1], result[2], result[3], result[4], result[5]);
   int i;
   for (i=0; i<6; i++)
-    if (result[i] != exp[i])
+    if (newlib_sqrt_result[i] != exp[i])
       return 0;
   return 1;
 }
