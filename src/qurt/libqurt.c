@@ -76,7 +76,7 @@
    benchmarks. */
 #define SCALE_FACTOR    (REPEAT_FACTOR >> 0)
 
-float *a, x1[2], x2[2];
+float *qurt_a, x1[2], x2[2];
 int flag;
 
 int  qurt();
@@ -123,23 +123,23 @@ int  qurt()
 {
 	float  d, w1, w2;
 
-	if(a[0] == 0.0) return(999);
-	d = a[1]*a[1] - 4 * a[0] * a[2];
-	w1 = 2.0 * a[0];
+	if(qurt_a[0] == 0.0) return(999);
+	d = qurt_a[1]*qurt_a[1] - 4 * qurt_a[0] * qurt_a[2];
+	w1 = 2.0 * qurt_a[0];
 	w2 = qurt_sqrt(qurt_fabs(d));
 	if(d > 0.0)
 	{
 		 flag = 1;
-		 x1[0] = (-a[1] + w2) / w1;
+		 x1[0] = (-qurt_a[1] + w2) / w1;
 		 x1[1] = 0.0;
-		 x2[0] = (-a[1] - w2) / w1;
+		 x2[0] = (-qurt_a[1] - w2) / w1;
 		 x2[1] = 0.0;
 		 return(0);
 	}
 	else if(d == 0.0)
 	{
 		 flag = 0;
-		 x1[0] = -a[1] / w1;
+		 x1[0] = -qurt_a[1] / w1;
 		 x1[1] = 0.0;
 		 x2[0] = x1[0];
 		 x2[1] = 0.0;
@@ -149,7 +149,7 @@ int  qurt()
 	{
 		 flag = -1;
 		 w2 /= w1;
-		 x1[0] = -a[1] / w1;
+		 x1[0] = -qurt_a[1] / w1;
 		 x1[1] = w2;
 		 x2[0] = x1[0];
 		 x2[1] = -w2;
@@ -183,11 +183,11 @@ beebs_qurt_initialise_benchmark (void)
 int
 beebs_qurt_benchmark (void)
 {
-  a = in1;
+  qurt_a = in1;
   qurt_result = qurt();
-  a = in2;
+  qurt_a = in2;
   qurt_result = qurt();
-  a = in3;
+  qurt_a = in3;
   qurt_result = qurt();
   return 0;
 }
