@@ -77,7 +77,7 @@ static float  a[3][3] = {
   {9.0,  0.0, -5.0},
   {5.0, -8.0,  6.0},
 };
-float  b[3][3], c[3][3], aa[3][3], a_i[3][3], e[3][3], det;
+float  minver_b[3][3], c[3][3], aa[3][3], a_i[3][3], e[3][3], det;
 
 
 float minver_fabs(float n)
@@ -105,7 +105,7 @@ int  mmul(int row_a, int col_a, int row_b, int col_b)
 	     {
 	       w = 0.0;
 	       for(k = 0; k < row_b; k++)
-		 w += a[i][k] * b[k][j];
+		 w += a[i][k] * minver_b[k][j];
 	       c[i][j] = w;
 	     }
 	 }
