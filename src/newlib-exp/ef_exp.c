@@ -136,7 +136,7 @@ P5   =  4.1381369442e-08; /* 0x3331bb4c */
 #define SCALE_FACTOR    (REPEAT_FACTOR >> 0)
 
 /* Tell the compiler not to optimize out calls in BENCHMARK. */
-volatile float result = 0;
+volatile float newlib_exp_result = 0;
 
 
 
@@ -158,11 +158,11 @@ beebs_newlib_exp_initialise_benchmark (void)
 int
 beebs_newlib_exp_benchmark (void)
 {
-  result = __ieee754_expf(1);
-  result = __ieee754_expf(2);
-  result = __ieee754_expf(3);
-  result = __ieee754_expf(4);
-  result = __ieee754_expf(5);
+  newlib_exp_result = __ieee754_expf(1);
+  newlib_exp_result = __ieee754_expf(2);
+  newlib_exp_result = __ieee754_expf(3);
+  newlib_exp_result = __ieee754_expf(4);
+  newlib_exp_result = __ieee754_expf(5);
   return 0;
 }
 

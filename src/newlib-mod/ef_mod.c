@@ -151,7 +151,7 @@ static const float one = 1.0, Zero[] = {0.0, -0.0,};
 #define SCALE_FACTOR    (REPEAT_FACTOR >> 0)
 
 /* Tell the compiler not to optimize out calls in BENCHMARK. */
-volatile float result = 0;
+volatile float newlib_mod_result = 0;
 
 
 
@@ -173,11 +173,11 @@ beebs_newlib_mod_initialise_benchmark (void)
 int
 beebs_newlib_mod_benchmark (void)
 {
-  result = __ieee754_fmodf(2.2353, 1234.5);
-  result = __ieee754_fmodf(3.2515, 2345.6);
-  result = __ieee754_fmodf(4.9346, 3456.7);
-  result = __ieee754_fmodf(5.2342, 4567.8);
-  result = __ieee754_fmodf(6.2352, 5678.9);
+  newlib_mod_result = __ieee754_fmodf(2.2353, 1234.5);
+  newlib_mod_result = __ieee754_fmodf(3.2515, 2345.6);
+  newlib_mod_result = __ieee754_fmodf(4.9346, 3456.7);
+  newlib_mod_result = __ieee754_fmodf(5.2342, 4567.8);
+  newlib_mod_result = __ieee754_fmodf(6.2352, 5678.9);
   return 0;
 }
 
