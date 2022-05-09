@@ -116,7 +116,7 @@ six:
     return 0.0;
 }
 
-double nums[10] = {0.0, 1.12312, 10000.2, 1200, 3.1415, 3.1415926, 9.9999999, 12.1212, 0.0000012, 1.000001};
+double frac_nums[10] = {0.0, 1.12312, 10000.2, 1200, 3.1415, 3.1415926, 9.9999999, 12.1212, 0.0000012, 1.000001};
 
 void
 beebs_frac_initialise_benchmark (void)
@@ -132,7 +132,7 @@ int beebs_frac_benchmark()
 
   n = 0;
   for(i = 0; i < 10; ++i)
-    frac(nums[i], &n, &d, error);
+    frac(frac_nums[i], &n, &d, error);
 
   return d;
 }
