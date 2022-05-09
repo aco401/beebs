@@ -77,7 +77,7 @@ int RandomInteger(void);
 
 // Globals
 
-int Seed;
+int cnt_Seed;
 
 matrix cnt_Array;
 
@@ -145,7 +145,7 @@ int InitSeed (void)
 
 {
 
-   Seed = 0;
+   cnt_Seed = 0;
 
    return 0;
 
@@ -245,9 +245,9 @@ int RandomInteger(void)
 
 {
 
-   Seed = ((Seed * 133) + 81) % 8095;
+   cnt_Seed = ((cnt_Seed * 133) + 81) % 8095;
 
-   return Seed;
+   return cnt_Seed;
 
 }
 
