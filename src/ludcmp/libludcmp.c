@@ -86,7 +86,7 @@
    accesses beyond the bounds of the arrays, I've increased the array sizes
    to remove the warnings, but we should investigate the code below to
    ensure that the algorithm is doing the right thing.  */
-float          a[8][9], b[6], x[6];
+float          ludcmp_a[8][9], b[6], x[6];
 
 int             ludcmp( /* int nmax, */ int n, float eps);
 
@@ -113,35 +113,35 @@ ludcmp( /* int nmax, */ int n, float eps)
 	if (n > 99 || eps <= 0.0)
 		return (999);
 	for (i = 0; i < n; i++) {
-		if (ludcmp_fabs(a[i][i]) <= eps)
+		if (ludcmp_fabs(ludcmp_a[i][i]) <= eps)
 			return (1);
 		for (j = i + 1; j <= n; j++) {
-			w = a[j][i];
+			w = ludcmp_a[j][i];
 			if (i != 0)
 				for (k = 0; k < i; k++)
-					w -= a[j][k] * a[k][i];
-			a[j][i] = w / a[i][i];
+					w -= ludcmp_a[j][k] * ludcmp_a[k][i];
+			ludcmp_a[j][i] = w / ludcmp_a[i][i];
 		}
 		for (j = i + 1; j <= n; j++) {
-			w = a[i + 1][j];
+			w = ludcmp_a[i + 1][j];
 			for (k = 0; k <= i; k++)
-				w -= a[i + 1][k] * a[k][j];
-			a[i + 1][j] = w;
+				w -= ludcmp_a[i + 1][k] * ludcmp_a[k][j];
+			ludcmp_a[i + 1][j] = w;
 		}
 	}
 	y[0] = b[0];
 	for (i = 1; i <= n; i++) {
 		w = b[i];
 		for (j = 0; j < i; j++)
-			w -= a[i][j] * y[j];
+			w -= ludcmp_a[i][j] * y[j];
 		y[i] = w;
 	}
-	x[n] = y[n] / a[n][n];
+	x[n] = y[n] / ludcmp_a[n][n];
 	for (i = n - 1; i >= 0; i--) {
 		w = y[i];
 		for (j = i + 1; j <= n; j++)
-			w -= a[i][j] * x[j];
-		x[i] = w / a[i][i];
+			w -= ludcmp_a[i][j] * x[j];
+		x[i] = w / ludcmp_a[i][i];
 	}
 	return (0);
 
@@ -169,10 +169,10 @@ beebs_ludcmp_benchmark (void)
   for (i = 0; i <= n; i++) {
           w = 0.0;
           for (j = 0; j <= n; j++) {
-                  a[i][j] = (i + 1) + (j + 1);
+                  ludcmp_a[i][j] = (i + 1) + (j + 1);
                   if (i == j)
-                          a[i][j] *= 10.0;
-                  w += a[i][j];
+                          ludcmp_a[i][j] *= 10.0;
+                  w += ludcmp_a[i][j];
           }
           b[i] = w;
   }
@@ -202,7 +202,7 @@ int beebs_ludcmp_verify_benchmark(int unused)
   }
   for (i=0; i<8; i++)
     for (j=0; j<9; j++)
-      if (a[i][j] != exp_a[i][j])
+      if (ludcmp_a[i][j] != exp_a[i][j])
         return 0;
 
   return 1;
