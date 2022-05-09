@@ -224,7 +224,7 @@ int dijkstra(int chStart, int chEnd)
    return rgnNodes[chEnd].iDist;
 }
 
-int output[NUM_NODES * NUM_NODES];
+int dijkstra_output[NUM_NODES * NUM_NODES];
 int output_count = 0;
 
 void
@@ -243,7 +243,7 @@ int beebs_dijkstra_benchmark() {
    /* finds 10 shortest paths between nodes */
    for(j = 0; j < NUM_NODES; j++) {
       for (i=0; i < NUM_NODES; i++) {
-         output[output_count] = dijkstra(i,j);
+         dijkstra_output[output_count] = dijkstra(i,j);
          output_count++;
       }
    }
@@ -260,10 +260,10 @@ int beebs_dijkstra_verify_benchmark(int unused) {
    35, 15, 28, 0, 0};
    int i;
    for (i=0; i<NUM_NODES*NUM_NODES; i++) {
-      if (output[i] != expected[i]) {
+      if (dijkstra_output[i] != expected[i]) {
          return 0;
       }
-//      printf("%d, ", output[i]);
+//      printf("%d, ", dijkstra_output[i]);
    }
    return 1;
 }
