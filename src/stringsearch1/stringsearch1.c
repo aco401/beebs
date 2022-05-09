@@ -20,7 +20,7 @@
    You should have received a copy of the GNU General Public License
    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-#include "support.h"
+//#include "support.h"
 
 #include <string.h>
 
@@ -42,7 +42,7 @@ char search[] ="abc";
 static int size;
 
 int
-benchmark (void)
+stringsearch1_benchmark (void)
 {
   int r;
   prep1((CHARTYPE *) search, size);
@@ -51,11 +51,11 @@ benchmark (void)
   return exec2((CHARTYPE *) buf, strlen(buf)) * r;
 }
 
-void initialise_benchmark() {
+void stringsearch1_initialise_benchmark() {
   size = 3;
 }
 
-int verify_benchmark(int r) {
+int stringsearch1_verify_benchmark(int r) {
   int expected = 36;
   if (r != expected)
     return 0;
