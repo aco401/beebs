@@ -37,7 +37,7 @@ typedef struct ilist {
   struct ilist *next;
 } ilist;
 
-ilist *htab[HASH_TAB_SIZE];
+ilist *sglib_hashtable_htab[HASH_TAB_SIZE];
 
 #define ILIST_COMPARATOR(e1, e2)    (e1->i - e2->i)
 
@@ -129,24 +129,24 @@ int beebs_sglib_hashtable_benchmark()
   struct sglib_hashed_ilist_iterator    it;
   volatile int cnt = 0;
 
-  sglib_hashed_ilist_init(htab);
+  sglib_hashed_ilist_init(sglib_hashtable_htab);
 
   for (i=0; i<100; i++) {
     ii.i = sglib_hashtable_array[i];
-    if (sglib_hashed_ilist_find_member(htab, &ii) == NULL) {
+    if (sglib_hashed_ilist_find_member(sglib_hashtable_htab, &ii) == NULL) {
       nn = malloc_beebs(sizeof(struct ilist));
       nn->i = sglib_hashtable_array[i];
-      sglib_hashed_ilist_add(htab, nn);
+      sglib_hashed_ilist_add(sglib_hashtable_htab, nn);
     }
   }
 
-  last=sglib_hashed_ilist_it_init(&it,htab);
-  for(ll=sglib_hashed_ilist_it_init(&it,htab); ll!=NULL; ll=sglib_hashed_ilist_it_next(&it)) {
+  last=sglib_hashed_ilist_it_init(&it,sglib_hashtable_htab);
+  for(ll=sglib_hashed_ilist_it_init(&it,sglib_hashtable_htab); ll!=NULL; ll=sglib_hashed_ilist_it_next(&it)) {
       ll->i = last->i;
       last = ll;
   }
 
-  for(ll=sglib_hashed_ilist_it_init(&it,htab); ll!=NULL; ll=sglib_hashed_ilist_it_next(&it)) {
+  for(ll=sglib_hashed_ilist_it_init(&it,sglib_hashtable_htab); ll!=NULL; ll=sglib_hashed_ilist_it_next(&it)) {
       cnt += ll->i;
       free_beebs(ll);
   }
