@@ -167,20 +167,20 @@ uint32_t digest[_MD5_DIGEST_LENGTH];
 
 
 void
-initialise_benchmark (void)
+beebs_nettle_md5_initialise_benchmark (void)
 {
 }
 
 
 int
-benchmark (void)
+beebs_nettle_md5_benchmark (void)
 {
   memcpy (digest, digest_ref, _MD5_DIGEST_LENGTH * sizeof (digest[0]));
   _nettle_md5_compress(digest, input);
   return 0;
 }
 
-int verify_benchmark(int unused) {
+int beebs_nettle_md5_verify_benchmark(int unused) {
   // #include <stdio.h>
   // for (i=0; i<_MD5_DIGEST_LENGTH; i++)
   //   printf("%x, ", digest[i]);

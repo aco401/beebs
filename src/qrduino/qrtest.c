@@ -33,7 +33,7 @@ static const char *encode;
 static int size;
 
 int
-benchmark (void)
+beebs_qrduino_benchmark (void)
 {
 
   initeccsize(1, size);
@@ -49,14 +49,14 @@ benchmark (void)
 
 extern void init_heap (void);
 
-void initialise_benchmark() {
+void beebs_qrduino_initialise_benchmark() {
   static const char *in_encode = "http://www.mageec.com";
   encode = in_encode;
   size = 22;
   init_heap ();
 }
 
-int verify_benchmark(int unused) {
+int beebs_qrduino_verify_benchmark(int unused) {
   int i;
   // #include <stdio.h>
   // for (i=0; i<22; i++)

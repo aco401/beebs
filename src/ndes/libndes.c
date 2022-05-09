@@ -239,13 +239,13 @@ static immense inp, key;
 static int newkey, isw;
 
 int
-benchmark (void)
+beebs_ndes_benchmark (void)
 {
    des(inp, key, &newkey, isw, &out);
    return 0;
 }
 
-void initialise_benchmark() {
+void beebs_ndes_initialise_benchmark() {
    inp.l = KNOWN_VALUE * 35;
    inp.r = KNOWN_VALUE * 26;
    key.l = KNOWN_VALUE * 2;
@@ -254,7 +254,7 @@ void initialise_benchmark() {
    isw = value;
 }
 
-int verify_benchmark(int unused) {
+int beebs_ndes_verify_benchmark(int unused) {
   // #include <stdio.h>
   // printf("%lu %lu\n", out.l, out.r);
   unsigned long int exp_l = 2489587893;

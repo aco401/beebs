@@ -185,20 +185,20 @@ DWORD crc32pseudo()
 }
 
 void
-initialise_benchmark (void)
+beebs_crc32_initialise_benchmark (void)
 {
 }
 
 
 
-int benchmark()
+int beebs_crc32_benchmark()
 {
   DWORD r;
   r = crc32pseudo();
   return (int)r;
 }
 
-int verify_benchmark(int r)
+int beebs_crc32_verify_benchmark(int r)
 {
   int expected = 1207487004;
 

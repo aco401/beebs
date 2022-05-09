@@ -83,20 +83,20 @@ volatile unsigned char OUT;
 /* This benchmark does not support verification */
 
 int
-verify_benchmark (int res __attribute ((unused)) )
+beebs_lcdnum_verify_benchmark (int res __attribute ((unused)) )
 {
   return -1;
 }
 
 
 void
-initialise_benchmark (void)
+beebs_lcdnum_initialise_benchmark (void)
 {
 }
 
 
 
-int benchmark(void)
+int beebs_lcdnum_benchmark(void)
 {
   int           i;
   unsigned char a;

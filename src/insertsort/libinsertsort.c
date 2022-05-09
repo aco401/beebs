@@ -71,7 +71,7 @@
 unsigned int a[11];    /* assume all data is positive */
 
 int
-benchmark (void)
+beebs_insertsort_benchmark (void)
 {
   int i,j, temp;
   i = 2;
@@ -89,7 +89,7 @@ benchmark (void)
   return 0;
 }
 
-void initialise_benchmark() {
+void beebs_insertsort_initialise_benchmark() {
   a[0] = 0;
   a[1] = 11;
   a[2] = 10;
@@ -103,7 +103,7 @@ void initialise_benchmark() {
   a[10]= 2;
 }
 
-int verify_benchmark(int unused) {
+int beebs_insertsort_verify_benchmark(int unused) {
   int i;
   int expected[] = {0,2,3,4,5,6,7,8,9,10,11};
   for (i=0; i<11; i++)

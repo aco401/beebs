@@ -266,13 +266,13 @@ static long int output[200];
 
 
 void
-initialise_benchmark (void)
+beebs_edn_initialise_benchmark (void)
 {
 }
 
 
 int
-benchmark(void)
+beebs_edn_benchmark(void)
 {
 	short in_a[200] = {0x0000, 0x07ff, 0x0c00, 0x0800, 0x0200, 0xf800, 0xf300, 0x0400, 0x0000,
 		0x07ff, 0x0c00, 0x0800, 0x0200, 0xf800, 0xf300, 0x0400, 0x0000, 0x07ff, 0x0c00,
@@ -342,7 +342,7 @@ benchmark(void)
 }
 
 #include <stdio.h>
-int verify_benchmark(int unused)
+int beebs_edn_verify_benchmark(int unused)
 {
 	int i;
 	int exp_c = 10243;

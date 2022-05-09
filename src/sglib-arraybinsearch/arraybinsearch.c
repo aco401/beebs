@@ -45,13 +45,13 @@ int array[100] = {14, 66, 12, 41, 86, 69, 19, 77, 68, 38, 26, 42, 37, 23, 17, 29
 volatile int found = 0;
 
 void
-initialise_benchmark (void)
+beebs_sglib_arraybinsearch_initialise_benchmark (void)
 {
 }
 
 
 
-int benchmark()
+int beebs_sglib_arraybinsearch_benchmark()
 {
   volatile int cnt=0;
   int tmp, index, i;
@@ -66,7 +66,7 @@ int benchmark()
   return cnt;
 }
 
-int verify_benchmark(int r) {
+int beebs_sglib_arraybinsearch_verify_benchmark(int r) {
   int expected = 2455;
   if (r != expected)
     return 0;

@@ -89,13 +89,13 @@ int fib(int n)
 }
 
 void
-initialise_benchmark (void)
+beebs_fibcall_initialise_benchmark (void)
 {
 }
 
 
 
-int benchmark()
+int beebs_fibcall_benchmark()
 {
   int a;
   int r;
@@ -105,7 +105,7 @@ int benchmark()
   return r;
 }
 
-int verify_benchmark(int r)
+int beebs_fibcall_verify_benchmark(int r)
 {
   int exp = 832040;
   if (r != exp)

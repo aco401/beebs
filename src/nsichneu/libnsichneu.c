@@ -81,13 +81,13 @@ volatile long	P3_marking_member_0[6];
 
 
 void
-initialise_benchmark (void)
+beebs_nsichneu_initialise_benchmark (void)
 {
 }
 
 
 /**void NSicherNeu()**/
-int benchmark()
+int beebs_nsichneu_benchmark()
 {
    int dummy_i;
 /*   dummy_i = 17; Takes too much time */
@@ -4287,7 +4287,7 @@ int benchmark()
  ***************************************************************************/
 
 
-int verify_benchmark(int unused) {
+int beebs_nsichneu_verify_benchmark(int unused) {
   int  expP1_is_marked = 3;
   long expP1_marking_member_0[3] = {0,0,0};
   int  expP2_is_marked = 5;

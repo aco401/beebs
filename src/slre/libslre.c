@@ -457,13 +457,13 @@ char text[] = "abbbababaabccababcacbcbcbabbabcbabcabcbbcbbac";
 char *regexes[] = {"(ab)+", "(b.+)+", "a[ab]*", "([ab^c][ab^c])+"};
 
 void
-initialise_benchmark (void)
+beebs_slre_initialise_benchmark (void)
 {
 }
 
 
 
-int benchmark()
+int beebs_slre_benchmark()
 {
   int i;
   int len = strlen(text);
@@ -478,7 +478,7 @@ int benchmark()
   return ret;
 }
 
-int verify_benchmark(int r) {
+int beebs_slre_verify_benchmark(int r) {
   int expected = 102;
   if (r != expected)
     return 0;

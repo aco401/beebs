@@ -98,17 +98,17 @@ volatile int In;
 static int n;
 
 int
-benchmark(void)
+beebs_recursion_benchmark(void)
 {
   In = fib(n);
   return In;
 }
 
-void initialise_benchmark() {
+void beebs_recursion_initialise_benchmark() {
   n = 10;
 }
 
-int verify_benchmark(int r)
+int beebs_recursion_verify_benchmark(int r)
 {
   int expected = 89;
   if (r != expected)

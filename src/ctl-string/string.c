@@ -447,7 +447,7 @@ static const char *in4;
 static const char *in5;
 
 int
-benchmark (void)
+beebs_ctl_string_benchmark (void)
 {
   ctl_string *s;
   ctl_string *s2;
@@ -473,7 +473,7 @@ benchmark (void)
   return cnt;
 }
 
-void initialise_benchmark() {
+void beebs_ctl_string_initialise_benchmark() {
   static const char a[] = "This is a string";
   static const char b[] = "This is a str2";
   static const char c[] = "aaa";
@@ -487,7 +487,7 @@ void initialise_benchmark() {
   init_heap ();
 }
 
-int verify_benchmark(int r)
+int beebs_ctl_string_verify_benchmark(int r)
 {
   int expected = 21;
   if (r != expected)

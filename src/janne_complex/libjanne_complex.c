@@ -76,7 +76,7 @@ int complex(int a, int b)
 
 static int a, b;
 
-int benchmark()
+int beebs_janne_complex_benchmark()
 {
   /* a = [1..30] b = [1..30] */
   int answer = 0;
@@ -88,12 +88,12 @@ int benchmark()
   return answer;
 }
 
-void initialise_benchmark() {
+void beebs_janne_complex_initialise_benchmark() {
   a = 1;
   b = 1;
 }
 
-int verify_benchmark(int r)
+int beebs_janne_complex_verify_benchmark(int r)
 {
   int exp = 1;
   if (r != exp)

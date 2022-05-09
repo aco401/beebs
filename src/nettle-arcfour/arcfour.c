@@ -91,13 +91,13 @@ arcfour_crypt(struct arcfour_ctx *ctx,
 
 
 void
-initialise_benchmark (void)
+beebs_nettle_arcfour_initialise_benchmark (void)
 {
 }
 
 
 int
-benchmark (void)
+beebs_nettle_arcfour_benchmark (void)
 {
   /* Encryption */
   arcfour_set_key(&arcfour_ctx, 16, key);
@@ -108,7 +108,7 @@ benchmark (void)
   return 0;
 }
 
-int verify_benchmark(int unused)
+int beebs_nettle_arcfour_verify_benchmark(int unused)
 {
   int exp[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
   int i;

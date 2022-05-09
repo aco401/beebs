@@ -43,7 +43,7 @@ unsigned char compressed[1200];
 /* This benchmark does not support verification */
 
 int
-verify_benchmark (int res __attribute ((unused)) )
+beebs_miniz_verify_benchmark (int res __attribute ((unused)) )
 {
   return -1;
 }
@@ -52,14 +52,14 @@ verify_benchmark (int res __attribute ((unused)) )
 extern void  init_heap (void);
 
 void
-initialise_benchmark (void)
+initialise_miniz_benchmark (void)
 {
   init_heap ();			/* Set up BEEBS heap */
 }
 
 
 
-int benchmark()
+int beebs_miniz_benchmark()
 {
 	volatile int cnt=0;
 	int len = strlen(text);

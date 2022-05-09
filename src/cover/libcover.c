@@ -252,13 +252,13 @@ int swi10(int c)
 }
 
 void
-initialise_benchmark (void)
+beebs_cover_initialise_benchmark (void)
 {
 }
 
 
 
-int benchmark()
+int beebs_cover_benchmark()
 {
 	volatile int cnt=0;
 
@@ -272,7 +272,7 @@ int benchmark()
 
 }
 
-int verify_benchmark(int r)
+int beebs_cover_verify_benchmark(int r)
 {
 	int expected = 180;
 	if (r != expected)

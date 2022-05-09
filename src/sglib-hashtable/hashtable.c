@@ -108,21 +108,21 @@ free_beebs (void *ptr)
 /* This benchmark does not support verification */
 
 int
-verify_benchmark (int res __attribute ((unused)) )
+beebs_sglib_hashtable_verify_benchmark (int res __attribute ((unused)) )
 {
   return -1;
 }
 
 
 void
-initialise_benchmark (void)
+beebs_sglib_hashtable_initialise_benchmark (void)
 {
   init_heap ();
 }
 
 
 
-int benchmark()
+int beebs_sglib_hashtable_benchmark()
 {
   int                                   i;
   struct ilist                          ii, *nn, *ll, *last;

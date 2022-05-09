@@ -46,14 +46,14 @@ int factor;
 void BubbleSort(int Array[]);
 // void Initialize(int Array[]);
 
-int benchmark()
+int beebs_bubblesort_benchmark()
 {
    BubbleSort(Array);
    return 0;
 }
 
 
-void initialise_benchmark()
+void beebs_bubblesort_initialise_benchmark()
 /*
  * Initializes given array with randomly generated integers.
  */
@@ -101,7 +101,7 @@ void BubbleSort(int Array[])
    }
 }
 
-int verify_benchmark(int result) {
+int beebs_bubblesort_verify_benchmark(int result) {
    int expected[NUMELEMS] = {-99, -98, -97, -96, -95, -94, -93, -92,
                              -91, -90, -89, -88, -87, -86, -85, -84, -83, -82,
                              -81, -80, -79, -78, -77, -76, -75, -74, -73, -72,

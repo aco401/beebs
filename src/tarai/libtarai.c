@@ -49,7 +49,7 @@ int tarai(int x, int y, int z)
 
 int x, y, z;
 
-int benchmark()
+int beebs_tarai_benchmark()
 {
     volatile int cnt=0;
 
@@ -59,13 +59,13 @@ int benchmark()
 
 }
 
-void initialise_benchmark() {
+void beebs_tarai_initialise_benchmark() {
   x = 9;
   y = 6;
   z = 3;
 }
 
-int verify_benchmark(int r) {
+int beebs_tarai_verify_benchmark(int r) {
   int expected = 9;
   if (r != expected)
     return 0;

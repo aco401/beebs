@@ -116,7 +116,7 @@ void Test(matrix A, matrix B, matrix Res);
 void Initialize(matrix Array);
 int RandomInteger(void);
 
-int benchmark()
+int beebs_matmult_benchmark()
 {
    Test(ArrayA, ArrayB, ResultArray);
 
@@ -166,7 +166,7 @@ void Multiply(matrix A, matrix B, matrix Res)
       }
 }
 
-void initialise_benchmark() {
+void beebs_matmult_initialise_benchmark() {
    InitSeed();
    int OuterIndex, InnerIndex;
 
@@ -178,7 +178,7 @@ void initialise_benchmark() {
          ArrayB[OuterIndex][InnerIndex] = RANDOM_VALUE;
 }
 
-int verify_benchmark(int unused)
+int beebs_matmult_verify_benchmark(int unused)
 {
   int i, j;
 #ifdef MATMULT_FLOAT

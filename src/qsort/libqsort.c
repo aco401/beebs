@@ -144,20 +144,20 @@ void sort(unsigned long n)
 /* This benchmark does not support verification */
 
 int
-verify_benchmark (int res __attribute ((unused)) )
+beebs_qsort_verify_benchmark (int res __attribute ((unused)) )
 {
   return -1;
 }
 
 
 void
-initialise_benchmark (void)
+beebs_qsort_initialise_benchmark (void)
 {
 }
 
 
 int
-benchmark()
+beebs_qsort_benchmark()
 {
   sort(20);
   return 0;

@@ -109,13 +109,13 @@ char source[ARRAYSIZE];
 
 char target[ARRAYSIZE];
 
-int benchmark(void)
+int beebs_duff_benchmark(void)
 {
   duffcopy( source, target, INVOCATION_COUNT );
   return 0;
 }
 
-void initialise_benchmark()
+void beebs_duff_initialise_benchmark()
 {
   int i;
 
@@ -125,7 +125,7 @@ void initialise_benchmark()
   }
 }
 
-int verify_benchmark(int unused)
+int beebs_duff_verify_benchmark(int unused)
 {
   int i;
   // check source and target equal up to INVOCATION_COUNT bytes

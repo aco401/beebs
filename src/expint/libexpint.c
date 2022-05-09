@@ -109,18 +109,18 @@ volatile int benchmark_result = 0;
 static int n, x;
 
 int
-benchmark (void)
+beebs_expint_benchmark (void)
 {
   benchmark_result = expint(n,x);
   return benchmark_result;
 }
 
-void initialise_benchmark() {
+void beebs_expint_initialise_benchmark() {
   n = 50;
   x = 1;
 }
 
-int verify_benchmark(int r)
+int beebs_expint_verify_benchmark(int r)
 {
   int expected = 3883;
   if (r != expected)

@@ -38,13 +38,13 @@ int fac (int n)
 
 
 void
-initialise_benchmark (void)
+beebs_fac_initialise_benchmark (void)
 {
 }
 
 
 int
-benchmark (void)
+beebs_fac_benchmark (void)
 {
   int i;
   volatile int s = 0;
@@ -56,7 +56,7 @@ benchmark (void)
   return s;
 }
 
-int verify_benchmark(int r)
+int beebs_fac_verify_benchmark(int r)
 {
   int expected = 4037914;
   if (r != expected)

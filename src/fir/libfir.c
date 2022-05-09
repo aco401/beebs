@@ -276,20 +276,20 @@ void fir_filter_int(const long* in,long* out,long in_len,
 /* This benchmark does not support verification */
 
 int
-verify_benchmark (int res __attribute ((unused)) )
+beebs_fir_verify_benchmark (int res __attribute ((unused)) )
 {
   return -1;
 }
 
 
 void
-initialise_benchmark (void)
+beebs_fir_initialise_benchmark (void)
 {
 }
 
 
 int
-benchmark (void)
+beebs_fir_benchmark (void)
 {
   long  output[OUTSIZE];
 

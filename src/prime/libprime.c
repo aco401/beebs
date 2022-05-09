@@ -66,19 +66,19 @@ ulong x;
 ulong y;
 
 int
-benchmark (void)
+beebs_prime_benchmark (void)
 {
   swap (&x, &y);
   result = (!(prime(x) && prime(y)));
   return 0;
 }
 
-void initialise_benchmark() {
+void beebs_prime_initialise_benchmark() {
   x =  21649L;
   y = 513239L;
 }
 
-int verify_benchmark(int unused) {
+int beebs_prime_verify_benchmark(int unused) {
   int expected = 0;
   if (result != expected)
     return 0;

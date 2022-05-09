@@ -228,14 +228,14 @@ int output[NUM_NODES * NUM_NODES];
 int output_count = 0;
 
 void
-dijkstra_initialise_benchmark (void)
+beebs_dijkstra_initialise_benchmark (void)
 {
   qinit_heap ();		/* Set up the BEEBS QITEM heap */
 }
 
 
 
-int dijkstra_benchmark() {
+int beebs_dijkstra_benchmark() {
    int i,j;
 
    output_count = 0;
@@ -251,7 +251,7 @@ int dijkstra_benchmark() {
    return 0;
 }
 
-int dijkstra_verify_benchmark(int unused) {
+int beebs_dijkstra_verify_benchmark(int unused) {
    int expected[] = {0, 7, 38, 23, 14, 36, 3, 29, 7, 14, 28, 0, 31, 16, 7, 34,
    31, 28, 1, 39, 39, 25, 0, 32, 14, 3, 32, 9, 26, 43, 12, 14, 40, 0, 21, 43,
    15, 12, 15, 26, 40, 36, 48, 28, 0, 27, 43, 33, 12, 39, 36, 22, 21, 29, 29,

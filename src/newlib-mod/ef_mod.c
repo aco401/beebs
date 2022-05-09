@@ -158,20 +158,20 @@ volatile float result = 0;
 /* This benchmark does not support verification */
 
 int
-verify_benchmark (int res __attribute ((unused)) )
+beebs_newlib_mod_verify_benchmark (int res __attribute ((unused)) )
 {
   return -1;
 }
 
 
 void
-initialise_benchmark (void)
+beebs_newlib_mod_initialise_benchmark (void)
 {
 }
 
 
 int
-benchmark (void)
+beebs_newlib_mod_benchmark (void)
 {
   result = __ieee754_fmodf(2.2353, 1234.5);
   result = __ieee754_fmodf(3.2515, 2345.6);

@@ -118,13 +118,13 @@ float sqrtfcn(float val)
 
 
 void
-initialise_benchmark (void)
+beebs_sqrt_initialise_benchmark (void)
 {
 }
 
 
 int
-benchmark()
+beebs_sqrt_benchmark()
 {
   float i = 0.0;
   volatile float accum = 0.0;
@@ -134,7 +134,7 @@ benchmark()
   return (int)(accum*100000);
 }
 
-int verify_benchmark(int r) {
+int beebs_sqrt_verify_benchmark(int r) {
   int expected = 661462912;
   if (r != expected)
     return 0;

@@ -68,13 +68,13 @@ double Coef;
 
 
 void
-initialise_benchmark (void)
+beebs_st_initialise_benchmark (void)
 {
 }
 
 
 int
-benchmark()
+beebs_st_benchmark()
 {
 #ifdef POUT
    long StartTime, StopTime;
@@ -194,7 +194,7 @@ int RandomInteger()
    return (Seed);
 }
 
-int verify_benchmark(int unused) {
+int beebs_st_verify_benchmark(int unused) {
   double expSumA = 4999.002470660901963128708302974700927734375;
   double expSumB = 4996.843113032735345768742263317108154296875;
   double expCoef = 0.99990005485361932446863875156850554049015045166016;

@@ -82,13 +82,13 @@ const char *strings[] = {"srrjngre", "asfcjnsdkj", "string", "msd",
     "strings"};
 
 void
-initialise_benchmark (void)
+beebs_levenshtein_initialise_benchmark (void)
 {
 }
 
 
 
-int benchmark()
+int beebs_levenshtein_benchmark()
 {
   int i, j;
   volatile unsigned sum = 0;
@@ -101,7 +101,7 @@ int benchmark()
 
 }
 
-int verify_benchmark(int r)
+int beebs_levenshtein_verify_benchmark(int r)
 {
   int exp = 122;
   if (r != exp)

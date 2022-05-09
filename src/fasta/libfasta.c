@@ -155,20 +155,20 @@ static void random_fasta (aminoacid_t const *genelist, size_t count) {
 /* This benchmark does not support verification */
 
 int
-verify_benchmark (int res __attribute ((unused)) )
+beebs_fasta_verify_benchmark (int res __attribute ((unused)) )
 {
   return -1;
 }
 
 
 void
-initialise_benchmark (void)
+beebs_fasta_initialise_benchmark (void)
 {
 }
 
 
 
-int benchmark () {
+int beebs_fasta_benchmark () {
   const int n = 1000;
 
     static aminoacid_t iub[] = {

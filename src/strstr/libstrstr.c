@@ -129,13 +129,13 @@ ret0:
 char *text = "abbaabbaababadcsdabbacasdaabbbaabbadabbacbbbaabbadabbacasdaabbbaabba";
 
 void
-initialise_benchmark (void)
+beebs_strstr_initialise_benchmark (void)
 {
 }
 
 
 char *substr = "abba";
-int benchmark()
+int beebs_strstr_benchmark()
 {
   char *f = text;
   int n=0;
@@ -150,7 +150,7 @@ int benchmark()
 
 }
 
-int verify_benchmark(int r) {
+int beebs_strstr_verify_benchmark(int r) {
   int expected = 8;
   if (r != expected)
     return 0;

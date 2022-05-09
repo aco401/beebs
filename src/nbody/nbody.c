@@ -162,13 +162,13 @@ double bodies_energy(struct body *bodies, unsigned int nbodies) {
 }
 
 void
-initialise_benchmark (void)
+beebs_nbody_initialise_benchmark (void)
 {
 }
 
 
 
-int benchmark()
+int beebs_nbody_benchmark()
 {
    int i;
    offset_momentum(solar_bodies, BODIES_SIZE);
@@ -179,7 +179,7 @@ int benchmark()
    return 0;
 }
 
-int verify_benchmark(int unused) {
+int beebs_nbody_verify_benchmark(int unused) {
    int i, j;
    /* print expected values */
    // printf("static struct body solar_bodies[] = {\n");

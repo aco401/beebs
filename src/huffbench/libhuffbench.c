@@ -491,21 +491,21 @@ void compdecomp(byte * data, size_t data_len)
 /* This benchmark does not support verification */
 
 int
-verify_benchmark (int res __attribute ((unused)) )
+beebs_huffbench_verify_benchmark (int res __attribute ((unused)) )
 {
   return -1;
 }
 
 
 void
-initialise_benchmark (void)
+beebs_huffbench_initialise_benchmark (void)
 {
   init_heap ();
 }
 
 
 
-int benchmark()
+int beebs_huffbench_benchmark()
 {
     // initialization
     byte * test_data = generate_test_data(TEST_SIZE);

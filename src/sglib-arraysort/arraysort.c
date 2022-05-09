@@ -40,20 +40,20 @@ int array2[100];
 /* This benchmark does not support verification */
 
 int
-verify_benchmark (int res __attribute ((unused)) )
+beebs_sglib_arraysort_verify_benchmark (int res __attribute ((unused)) )
 {
   return -1;
 }
 
 
 void
-initialise_benchmark (void)
+beebs_sglib_arraysort_initialise_benchmark (void)
 {
 }
 
 
 
-int benchmark()
+int beebs_sglib_arraysort_benchmark()
 {
   volatile int cnt=0;
   int i;

@@ -145,20 +145,20 @@ unsigned short icrc(unsigned short crc, unsigned long len,
 /* This benchmark does not support verification */
 
 int
-verify_benchmark (int res __attribute ((unused)) )
+beebs_crc_verify_benchmark (int res __attribute ((unused)) )
 {
   return -1;
 }
 
 
 void
-initialise_benchmark (void)
+beebs_crc_initialise_benchmark (void)
 {
 }
 
 
 
-int benchmark(void)
+int beebs_crc_benchmark(void)
 {
   unsigned short i1,i2;
   unsigned long n;

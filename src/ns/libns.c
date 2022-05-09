@@ -1075,20 +1075,20 @@ int foo(int x)
 /* This benchmark does not support verification */
 
 int
-verify_benchmark (int res __attribute ((unused)) )
+beebs_ns_verify_benchmark (int res __attribute ((unused)) )
 {
   return -1;
 }
 
 
 void
-initialise_benchmark (void)
+beebs_ns_initialise_benchmark (void)
 {
 }
 
 
 int
-benchmark(void)
+beebs_ns_benchmark(void)
 {
 
 #ifdef TEST

@@ -94,13 +94,13 @@ float select(unsigned long k, unsigned long n)
 static int x, y;
 
 int
-benchmark (void)
+beebs_select_benchmark (void)
 {
   select(x, y);
   return 0;
 }
 
-void initialise_benchmark() {
+void beebs_select_initialise_benchmark() {
   x = 10;
   y = 20;
 }
@@ -109,7 +109,7 @@ void initialise_benchmark() {
 /* This benchmark does not support verification */
 
 int
-verify_benchmark (int res __attribute ((unused)) )
+beebs_select_verify_benchmark (int res __attribute ((unused)) )
 {
   return -1;
 }

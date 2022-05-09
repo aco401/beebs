@@ -849,21 +849,21 @@ cast128_set_key(struct cast128_ctx *ctx, int length, const uint8_t *key)
   ctx->rounds = full ? 16 : 12;
 }
 
-int initialise_benchmark()
+int beebs_nettle_cast128_initialise_benchmark()
 {
   cast128_set_key(&cast128_ctx, CAST128_KEY_SIZE, key);
   return 0;
 }
 
 int
-benchmark (void)
+beebs_nettle_cast128_benchmark (void)
 {
   cast128_encrypt(&cast128_ctx, CAST128_KEY_SIZE, result, data);
   cast128_decrypt(&cast128_ctx, CAST128_KEY_SIZE, result, result);
   return 0;
 }
 
-int verify_benchmark(int unused)
+int beebs_nettle_cast128_verify_benchmark(int unused)
 {
   int i;
   //int expected_e = {221, 92, 251, 152, 155, 78, 241, 216, 80, 153, 123, 164, 171, 75, 220, 168};

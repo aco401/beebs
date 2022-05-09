@@ -114,20 +114,20 @@ binary_search(int x)
 /* This benchmark does not support verification */
 
 int
-verify_benchmark (int res __attribute ((unused)) )
+beebs_bs_verify_benchmark (int res __attribute ((unused)) )
 {
   return -1;
 }
 
 
 void
-initialise_benchmark (void)
+beebs_bs_initialise_benchmark (void)
 {
 }
 
 
 
-int benchmark()
+int beebs_bs_benchmark()
 {
   binary_search(8);
   return 0;

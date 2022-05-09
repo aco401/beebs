@@ -127,7 +127,7 @@ static int end;
 static int end2;
 
 int
-benchmark (void)
+beebs_ctl_benchmark (void)
 {
   int_container *v;
   pair_container *v2;
@@ -176,7 +176,7 @@ benchmark (void)
   return cnt;
 }
 
-void initialise_benchmark() {
+void beebs_ctl_initialise_benchmark() {
   init = 1;
   lim = 100;
   fact = 11;
@@ -186,7 +186,7 @@ void initialise_benchmark() {
   init_heap ();
 }
 
-int verify_benchmark(int r)
+int beebs_ctl_verify_benchmark(int r)
 {
 #ifdef CTL_VECTOR
   int expected = 25542939;

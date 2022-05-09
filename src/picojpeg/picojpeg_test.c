@@ -87,20 +87,20 @@ unsigned char pjpeg_need_bytes_callback(unsigned char* pBuf, unsigned char buf_s
 /* This benchmark does not support verification */
 
 int
-verify_benchmark (int res __attribute ((unused)) )
+beebs_picojpeg_verify_benchmark (int res __attribute ((unused)) )
 {
   return -1;
 }
 
 
 void
-initialise_benchmark (void)
+beebs_picojpeg_initialise_benchmark (void)
 {
 }
 
 
 int
-benchmark (void)
+beebs_picojpeg_benchmark (void)
 {
   pjpeg_image_info_t pInfo;
   unsigned char status;

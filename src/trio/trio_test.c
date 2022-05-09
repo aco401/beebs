@@ -32,7 +32,7 @@
 /* This version of the benchmark does not support verification */
 
 int
-verify_benchmark (int res __attribute ((unused)) )
+beebs_verify_benchmark (int res __attribute ((unused)) )
 {
   return -1;
 }
@@ -66,13 +66,13 @@ volatile char char_dest [20];
 
 
 void
-initialise_benchmark (void)
+beebs_trio_initialise_benchmark (void)
 {
 }
 
 
 int
-benchmark (void)
+beebs_trio_benchmark (void)
 {
   trio_sscanf("123", "%d", &int_dest);
   trio_sscanf("123 456", "%d %d", &int_dest, &int_dest);
@@ -84,7 +84,7 @@ benchmark (void)
   return 0;
 }
 
-int verify_benchmark(int unused) {
+int beebs_trio_verify_benchmark(int unused) {
   int expected = 15;
   if (int_dest != expected)
     return 0;

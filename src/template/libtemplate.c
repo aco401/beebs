@@ -35,20 +35,20 @@
 /* This benchmark does not support verification */
 
 int
-verify_benchmark (int res __attribute ((unused)) )
+beebs_template_verify_benchmark (int res __attribute ((unused)) )
 {
   return -1;
 }
 
 
 void
-initialise_benchmark (void)
+beebs_template_initialise_benchmark (void)
 {
 }
 
 
 int
-benchmark (void)
+beebs_template_benchmark (void)
 {
   /* Code to benchmark goes here */
   return 0;

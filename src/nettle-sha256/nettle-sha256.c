@@ -426,7 +426,7 @@ unsigned char hash[32] =
 uint8_t buffer[SHA256_DIGEST_SIZE];
 
 int
-verify_benchmark (int res __attribute ((unused)) )
+beebs_nettle_sha256_verify_benchmark (int res __attribute ((unused)) )
 {
   bool correct = true;
 
@@ -440,13 +440,13 @@ verify_benchmark (int res __attribute ((unused)) )
 }
 
 void
-initialise_benchmark (void)
+beebs_nettle_sha256_initialise_benchmark (void)
 {
   memset (buffer, 0, sizeof(buffer));
 }
 
 int
-benchmark (void)
+beebs_nettle_sha256_benchmark (void)
 {
   struct sha256_ctx ctx;
   nettle_sha256.init (&ctx);

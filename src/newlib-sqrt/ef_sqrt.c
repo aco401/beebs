@@ -126,7 +126,7 @@ volatile float result[6];
 static int a, b, c, d, e, f;
 
 int
-benchmark (void)
+beebs_newlib_sqrt_benchmark (void)
 {
   result[0] = __ieee754_sqrtf(a);
   result[1] = __ieee754_sqrtf(b);
@@ -137,7 +137,7 @@ benchmark (void)
   return 0;
 }
 
-void initialise_benchmark() {
+void beebs_newlib_sqrt_initialise_benchmark() {
   a = 2;
   b = 3;
   c = 5;
@@ -146,7 +146,7 @@ void initialise_benchmark() {
   f = 8;
 }
 
-int verify_benchmark(int unused)
+int beebs_newlib_sqrt_verify_benchmark(int unused)
 {
   float exp[] = {1.41421353816986083984375,
                 1.73205077648162841796875,

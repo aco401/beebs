@@ -126,20 +126,20 @@ volatile int chkerr = 0;
 /* This benchmark does not support verification */
 
 int
-verify_benchmark (int res __attribute ((unused)) )
+beebs_ud_verify_benchmark (int res __attribute ((unused)) )
 {
   return -1;
 }
 
 
 void
-initialise_benchmark (void)
+beebs_ud_initialise_benchmark (void)
 {
 }
 
 
 int
-benchmark()
+beebs_ud_benchmark()
 {
   int      i, j, nmax = 20, n = 5;
   long int /* eps, */ w;

@@ -230,13 +230,13 @@ const long max_size = 100;
 Test array1[100];
 
 void
-initialise_benchmark (void)
+beebs_mergesort_initialise_benchmark (void)
 {
 }
 
 
 
-int benchmark() {
+int beebs_mergesort_benchmark() {
 	long total, index, test_case;
 	Comparison compare = TestCompare;
 
@@ -278,7 +278,7 @@ int benchmark() {
 	return 0;
 }
 
-int verify_benchmark(int unused)
+int beebs_mergesort_verify_benchmark(int unused)
 {
 	int i;
 	// x86

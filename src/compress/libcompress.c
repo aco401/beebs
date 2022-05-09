@@ -229,20 +229,20 @@ void writebytes( char *buf, int n );
 /* This benchmark does not support verification */
 
 int
-verify_benchmark (int res __attribute ((unused)) )
+beebs_compress_verify_benchmark (int res __attribute ((unused)) )
 {
   return -1;
 }
 
 
 void
-initialise_benchmark (void)
+beebs_compress_initialise_benchmark (void)
 {
 }
 
 
 
-int benchmark()
+int beebs_compress_benchmark()
 {
    int count = IN_COUNT;
 

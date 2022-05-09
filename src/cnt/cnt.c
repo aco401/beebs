@@ -87,7 +87,7 @@ int Postotal, Negtotal, Poscnt, Negcnt;
 
 // The main function
 
-int benchmark (void)
+int beebs_cnt_benchmark (void)
 
 {
 
@@ -251,12 +251,12 @@ int RandomInteger(void)
 
 }
 
-void initialise_benchmark() {
+void beebs_cnt_initialise_benchmark() {
    InitSeed();
    Initialize(Array);
 }
 
-int verify_benchmark(int nt) {
+int beebs_cnt_verify_benchmark(int nt) {
   int expected_negtotal = 396675;
   if (expected_negtotal != nt)
     return 0;

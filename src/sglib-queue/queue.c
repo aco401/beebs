@@ -42,13 +42,13 @@ int array[100] = {14, 66, 12, 41, 86, 69, 19, 77, 68, 38, 26, 42, 37, 23, 17, 29
   27, 47, 34, 35, 62, 97, 2, 79, 98, 25, 22, 65, 71, 0};
 
 void
-initialise_benchmark (void)
+beebs_sglib_queue_initialise_benchmark (void)
 {
 }
 
 
 
-int benchmark()
+int beebs_sglib_queue_benchmark()
 {
   int i, ai,aj, n;
   int a[MAX_PARAMS];
@@ -80,7 +80,7 @@ int benchmark()
   return cnt;
 }
 
-int verify_benchmark(int r) {
+int beebs_sglib_queue_verify_benchmark(int r) {
   int expected = 9900;
   if (r != expected)
     return 0;

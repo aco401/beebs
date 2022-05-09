@@ -152,13 +152,13 @@ const unsigned long test[] = {
 
 
 void
-initialise_benchmark (void)
+beebs_aha_compress_beebs_initialise_benchmark (void)
 {
 }
 
 
 int
-benchmark (void)
+beebs_aha_compress_benchmark (void)
 {
    int errors = 0,  n, i;
    unsigned int r;
@@ -193,7 +193,7 @@ benchmark (void)
 }
 
 // r is the number of errors therefore if r = 0 then output a 1 for correct
-int verify_benchmark(int r)
+int beebs_aha_compress_beebs_verify_benchmark(int r)
 {
    if (r != 0)
       return 0;

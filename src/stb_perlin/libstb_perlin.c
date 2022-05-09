@@ -194,20 +194,20 @@ static const float expected[PX_LIM][PX_LIM] =
 /* This benchmark does not support verification */
 
 int
-verify_benchmark (int res __attribute ((unused)) )
+beebs_stb_perlin_verify_benchmark (int res __attribute ((unused)) )
 {
   return -1;
 }
 
 
 void
-initialise_benchmark (void)
+beebs_stb_perlin_initialise_benchmark (void)
 {
 }
 
 
 
-int benchmark(void)
+int beebs_stb_perlin_benchmark(void)
 {
     int xpx, ypx;
     float x, y, out;

@@ -1133,7 +1133,7 @@ struct aes_ctx encctx;
 struct aes_ctx decctx;
 
 int
-verify_benchmark (int res __attribute ((unused)) )
+beebs_nettle_aes_verify_benchmark (int res __attribute ((unused)) )
 {
   bool correct = true;
 
@@ -1149,12 +1149,12 @@ verify_benchmark (int res __attribute ((unused)) )
 }
 
 void
-initialise_benchmark (void)
+beebs_nettle_aes_initialise_benchmark (void)
 {
 }
 
 int
-benchmark (void)
+beebs_nettle_aes_benchmark (void)
 {
   aes_set_encrypt_key(&encctx, 32, key);
   aes_encrypt(&encctx, LEN, encrypted, plaintext);

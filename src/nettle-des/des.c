@@ -274,20 +274,20 @@ des_decrypt(const struct des_ctx *ctx,
 
 
 void
-initialise_benchmark (void)
+beebs_nettle_des_initialise_benchmark (void)
 {
 }
 
 
 int
-benchmark (void)
+beebs_nettle_des_benchmark (void)
 {
   des_encrypt(&des_ctx, 16, result, data);
   des_decrypt(&des_ctx, 16, result, result);
   return 0;
 }
 
-int verify_benchmark(int unused) {
+int beebs_nettle_des_verify_benchmark(int unused) {
   int i;
   // #include <stdio.h>
   // for (i=0; i<16; i++)

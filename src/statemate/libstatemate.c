@@ -1292,7 +1292,7 @@ void FH_DU(void)
 
 
 
-int benchmark(void)
+int beebs_statemate_benchmark(void)
 {
   interface();
   FH_DU();
@@ -1300,7 +1300,7 @@ int benchmark(void)
   return 0;
 }
 
-void initialise_benchmark() {
+void beebs_statemate_initialise_benchmark() {
    int i;
    for (i=0; i<64; i++) {
       Bitlist[i] = 0;
@@ -1308,7 +1308,7 @@ void initialise_benchmark() {
    init();
 }
 
-int verify_benchmark(int unused) {
+int beebs_statemate_verify_benchmark(int unused) {
    char expected[64] = {0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
    int i;
    for (i=0; i<64; i++) {

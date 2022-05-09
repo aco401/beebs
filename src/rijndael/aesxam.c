@@ -191,20 +191,20 @@ char *presetkey="ABCDEF1234567890ABCDEF1234567890";
 /* This benchmark does not support verification */
 
 int
-verify_benchmark (int res __attribute ((unused)) )
+beebs_rijndael_verify_benchmark (int res __attribute ((unused)) )
 {
   return -1;
 }
 
 
 void
-initialise_benchmark (void)
+beebs_rijndael_initialise_benchmark (void)
 {
 }
 
 
 
-int benchmark()
+int beebs_rijndael_benchmark()
 {
    char    *cp=0, ch=0;
    byte key[32]={0};

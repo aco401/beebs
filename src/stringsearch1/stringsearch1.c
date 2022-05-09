@@ -42,7 +42,7 @@ char search[] ="abc";
 static int size;
 
 int
-stringsearch1_benchmark (void)
+beebs_stringsearch1_benchmark (void)
 {
   int r;
   prep1((CHARTYPE *) search, size);
@@ -51,11 +51,11 @@ stringsearch1_benchmark (void)
   return exec2((CHARTYPE *) buf, strlen(buf)) * r;
 }
 
-void stringsearch1_initialise_benchmark() {
+void beebs_stringsearch1_initialise_benchmark() {
   size = 3;
 }
 
-int stringsearch1_verify_benchmark(int r) {
+int beebs_stringsearch1_verify_benchmark(int r) {
   int expected = 36;
   if (r != expected)
     return 0;

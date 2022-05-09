@@ -284,13 +284,13 @@ void fdct(short int *blk, int lx)
 
 
 void
-initialise_benchmark (void)
+beebs_fdct_initialise_benchmark (void)
 {
 }
 
 
 #include <stdio.h>
-int benchmark()
+int beebs_fdct_benchmark()
 {
   /* Need to reinitialize the input data each time */
 
@@ -299,7 +299,7 @@ int benchmark()
   return 0;
 }
 
-int verify_benchmark(int unused)
+int beebs_fdct_verify_benchmark(int unused)
 {
   return !memcmp (block, exp_res, 64 * sizeof (block[0]));
 

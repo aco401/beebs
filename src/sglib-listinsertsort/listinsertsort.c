@@ -96,14 +96,14 @@ free_beebs (void *ptr)
 }
 
 void
-initialise_benchmark (void)
+beebs_sglib_listinsertsort_initialise_benchmark (void)
 {
   init_heap ();
 }
 
 
 
-int benchmark()
+int beebs_sglib_listinsertsort_benchmark()
 {
   int i;
   struct ilist *l, *the_list;
@@ -130,7 +130,7 @@ int benchmark()
   return cnt;
 }
 
-int verify_benchmark(int r) {
+int beebs_sglib_listinsertsort_verify_benchmark(int r) {
   int expected = 4936;
   if (r != expected)
     return 0;

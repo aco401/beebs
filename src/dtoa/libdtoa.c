@@ -4290,14 +4290,14 @@ dtoa (double dd, int mode, int ndigits, int *decpt, int *sign, char **rve)
 char *nums[] = {"238434.3459823", "23955.0", "0.01000000023123", "1.0", "5555.5555555555555555"};
 
 void
-initialise_benchmark (void)
+beebs_dtoa_initialise_benchmark (void)
 {
   init_heap ();
 }
 
 
 
-int benchmark()
+int beebs_dtoa_benchmark()
 {
     volatile double sum=0;
     int i;
@@ -4309,7 +4309,7 @@ int benchmark()
 
 }
 
-int verify_benchmark(int r)
+int beebs_dtoa_verify_benchmark(int r)
 {
   int expected = 267945;
   if (r != expected)
