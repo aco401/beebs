@@ -177,7 +177,7 @@
 #define MULTIPLY(var,const)  ((var) * (const))
 #endif
 
-DCTELEM data[64];
+DCTELEM jfdctint_data[64];
 
 /*
  * Perform the forward DCT on one block of samples.
@@ -197,7 +197,7 @@ jpeg_fdct_islow ()
   /* Note results are scaled up by sqrt(8) compared to a true DCT; */
   /* furthermore, we scale the results by 2**PASS1_BITS. */
 
-  dataptr = data;
+  dataptr = jfdctint_data;
   for (ctr = DCTSIZE-1; ctr >= 0; ctr--) {
     tmp0 = dataptr[0] + dataptr[7];
     tmp7 = dataptr[0] - dataptr[7];
@@ -262,7 +262,7 @@ jpeg_fdct_islow ()
    * by an overall factor of 8.
    */
 
-  dataptr = data;
+  dataptr = jfdctint_data;
   for (ctr = DCTSIZE-1; ctr >= 0; ctr--) {
     tmp0 = dataptr[DCTSIZE*0] + dataptr[DCTSIZE*7];
     tmp7 = dataptr[DCTSIZE*0] - dataptr[DCTSIZE*7];
@@ -344,7 +344,7 @@ void beebs_jfdctint_initialise_benchmark() {
   seed = 1;
   for (i = 0; i < 64; i++) {
     seed = ((seed * 133) + 81) % 65535;
-    data[i] = seed;
+    jfdctint_data[i] = seed;
   }
 }
 
@@ -353,7 +353,7 @@ int beebs_jfdctint_verify_benchmark(int unused)
   DCTELEM exp[] = {1956823, 184557, -39350, -94393, -77163, 5995, 162871, -3428, 31856, 57575, -49784, 43664, 63854, -9784, 11398, -23444, 13102, 59509, 63748, -34407, -57064, 11667, 37414, 41934, 20234, 25212, -44504, 25562, -46366, -4562, -40816, -64820, -203745, -15884, -134082, -126104, 66045, 23372, -87152, -147968, 41739, -20979, -36653, 23706, 613, 41593, 34760, -60639, 30493, -10396, 13944, -13980, 52343, -40116, -55093, 37532, 61998, -22500, 25991, -57098, -18228, 47265, -48356, 38613};
   int i;
   for (i=0; i<64; ++i)
-    if (data[i] != exp[i])
+    if (jfdctint_data[i] != exp[i])
       return 0;
   return 1;
 }
