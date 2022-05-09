@@ -228,14 +228,14 @@ int output[NUM_NODES * NUM_NODES];
 int output_count = 0;
 
 void
-initialise_benchmark (void)
+dijkstra_initialise_benchmark (void)
 {
   qinit_heap ();		/* Set up the BEEBS QITEM heap */
 }
 
 
 
-int benchmark() {
+int dijkstra_benchmark() {
    int i,j;
 
    output_count = 0;
