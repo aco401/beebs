@@ -35,7 +35,7 @@
 
 #define MAX_ELEMS 1000
 
-int array[100] = {14, 66, 12, 41, 86, 69, 19, 77, 68, 38, 26, 42, 37, 23, 17, 29, 55, 13,
+int sglib_arraybinsearch_array[100] = {14, 66, 12, 41, 86, 69, 19, 77, 68, 38, 26, 42, 37, 23, 17, 29, 55, 13,
   90, 92, 76, 99, 10, 54, 57, 83, 40, 44, 75, 33, 24, 28, 80, 18, 78, 32, 93, 89, 52, 11,
   21, 96, 50, 15, 48, 63, 87, 20, 8, 85, 43, 16, 94, 88, 53, 84, 74, 91, 67, 36, 95, 61,
   64, 5, 30, 82, 72, 46, 59, 9, 7, 3, 39, 31, 4, 73, 70, 60, 58, 81, 56, 51, 45, 1, 6, 49,
@@ -58,8 +58,8 @@ int beebs_sglib_arraybinsearch_benchmark()
 
   index = 0;
   for(i=0; i< 100; i++) {
-    tmp = array[i];
-    SGLIB_ARRAY_BINARY_SEARCH(int, array, 0, i, tmp, SGLIB_NUMERIC_COMPARATOR, found, index);
+    tmp = sglib_arraybinsearch_array[i];
+    SGLIB_ARRAY_BINARY_SEARCH(int, sglib_arraybinsearch_array, 0, i, tmp, SGLIB_NUMERIC_COMPARATOR, found, index);
     cnt += index;
   }
 
