@@ -158,7 +158,7 @@ int  qurt()
 }
 
 /* Write to RESULT in BENCHMARK so call is not optimised out.  */
-volatile int result = 0;
+volatile int qurt_result = 0;
 static float in1[] = {1.0, -3.0, 2.0};
 static float in2[] = {1.0, -2.0, 1.0};
 static float in3[] = {1.0, -4.0, 8.0};
@@ -184,11 +184,11 @@ int
 beebs_qurt_benchmark (void)
 {
   a = in1;
-  result = qurt();
+  qurt_result = qurt();
   a = in2;
-  result = qurt();
+  qurt_result = qurt();
   a = in3;
-  result = qurt();
+  qurt_result = qurt();
   return 0;
 }
 
