@@ -65,6 +65,7 @@
 
 #include <string.h>
 #include <stdlib.h>
+#include "alloca.h"
 
 //#include "support.h"
 
