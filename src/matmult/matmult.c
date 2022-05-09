@@ -107,18 +107,18 @@ values_match (long v1, long v2)
 
 
 
-int cnt_Seed;
+int matmult_Seed;
 matrix ArrayA, ArrayB, ResultArray;
 
 void Multiply(matrix A, matrix B, matrix Res);
 void matmult_InitSeed(void);
-void Test(matrix A, matrix B, matrix Res);
+void matmult_Test(matrix A, matrix B, matrix Res);
 void Initialize(matrix Array);
-int RandomInteger(void);
+int matmult_RandomInteger(void);
 
 int beebs_matmult_benchmark()
 {
-   Test(ArrayA, ArrayB, ResultArray);
+   matmult_Test(ArrayA, ArrayB, ResultArray);
 
    return 0;
 }
@@ -129,14 +129,14 @@ int beebs_matmult_benchmark()
  */
 void matmult_InitSeed(void)
 {
-   cnt_Seed = 0;
+   matmult_Seed = 0;
 }
 
 /*
  * Runs a multiplication test on an array.  Calculates and prints the
  * time it takes to multiply the matrices.
  */
-void Test(matrix A, matrix B, matrix Res)
+void matmult_Test(matrix A, matrix B, matrix Res)
 {
    Multiply(A, B, Res);
 }
@@ -144,10 +144,10 @@ void Test(matrix A, matrix B, matrix Res)
 /*
  * Generates random integers between 0 and 8095
  */
-int RandomInteger(void)
+int matmult_RandomInteger(void)
 {
-   cnt_Seed = ((cnt_Seed * 133) + 81) % MOD_SIZE;
-   return (cnt_Seed);
+   matmult_Seed = ((matmult_Seed * 133) + 81) % MOD_SIZE;
+   return (matmult_Seed);
 }
 
 /*
