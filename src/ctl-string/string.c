@@ -55,8 +55,8 @@ struct CTL_STRUCT {
 };
 typedef struct CTL_STRUCT ctl_struct;
 
-unsigned int ctl_errno;
-unsigned int ctl_warning;
+unsigned int ctl_string_errno;
+unsigned int ctl_string_warning;
 
 /* BEEBS heap is just an array */
 
@@ -106,11 +106,11 @@ free_beebs (void *ptr)
 {
 }
 
-int ctl_SetBlockSize(ctl_struct* its, size_t BlockSize)
+int ctl_string_SetBlockSize(ctl_struct* its, size_t BlockSize)
 {
   if(BlockSize<1)
   {
-    ctl_errno=CTL_WRONG_VALUE;
+    ctl_string_errno=CTL_WRONG_VALUE;
     return 1;
   }
   its->BlockSize=BlockSize;
@@ -140,7 +140,7 @@ ctl_string* ctl_StringInitSize(int BlockSize)
   s->string   = malloc_beebs(s->BlockSize);
   if(!s->string)
   {
-    ctl_errno = CTL_OUT_OF_MEMORY;
+    ctl_string_errno = CTL_OUT_OF_MEMORY;
     s->size   = 1;
     s->alloc  = 0;
     return NULL;
@@ -166,7 +166,7 @@ ctl_string* ctl_StringInitCopy(ctl_string* str)
   s->string=malloc_beebs(str->alloc);
   if(!s->string)
   {
-    ctl_errno = CTL_OUT_OF_MEMORY;
+    ctl_string_errno = CTL_OUT_OF_MEMORY;
     s->size   = 0;
     s->alloc  = 0;
     return NULL;
@@ -196,7 +196,7 @@ int ctl_StringSet(ctl_string* s, const char* string)
     secure=malloc_beebs(alloc);
     if(!secure)
     {
-      ctl_errno=CTL_OUT_OF_MEMORY;
+      ctl_string_errno=CTL_OUT_OF_MEMORY;
       return 1;
     }
     memcpy(secure, s->string, s->alloc);
@@ -219,7 +219,7 @@ int ctl_StringSetString(ctl_string* s, ctl_string* string)
     secure=malloc_beebs(len);
     if(!secure)
     {
-      ctl_errno=CTL_OUT_OF_MEMORY;
+      ctl_string_errno=CTL_OUT_OF_MEMORY;
       return 1;
     }
     memcpy(secure, s->string, s->alloc);
@@ -243,7 +243,7 @@ int ctl_StringAppend(ctl_string* s, const char* string)
     secure=malloc_beebs(alloc);
     if(!secure)
     {
-      ctl_errno=CTL_OUT_OF_MEMORY;
+      ctl_string_errno=CTL_OUT_OF_MEMORY;
       s->size-=len;
       return 1;
     }
@@ -262,7 +262,7 @@ char ctl_StringGetAt(ctl_string* s, size_t pos)
 {
   CTL_RANGE(pos>=s->size)
   {
-    ctl_errno = CTL_OUT_OF_RANGE;
+    ctl_string_errno = CTL_OUT_OF_RANGE;
     return 0;
   }
   return s->string[pos];
@@ -272,7 +272,7 @@ int ctl_StringSetAt(ctl_string* s, size_t pos, char value)
 {
   CTL_RANGE(pos>=s->size)
   {
-    ctl_errno = CTL_OUT_OF_RANGE;
+    ctl_string_errno = CTL_OUT_OF_RANGE;
     return 0;
   }
   s->string[pos]=value;
@@ -283,7 +283,7 @@ int ctl_StringInsertAt(ctl_string* s, size_t pos, char value)
 {
   CTL_RANGE(pos>=s->size)
   {
-    ctl_errno=CTL_WRONG_VALUE;
+    ctl_string_errno=CTL_WRONG_VALUE;
     return 1;
   }
   if(s->size>=s->alloc)
@@ -294,7 +294,7 @@ int ctl_StringInsertAt(ctl_string* s, size_t pos, char value)
 
     if(!secure)
     {
-      ctl_errno=CTL_OUT_OF_MEMORY;
+      ctl_string_errno=CTL_OUT_OF_MEMORY;
       s->alloc-=s->BlockSize;
       return 1;
     }
@@ -314,7 +314,7 @@ int ctl_StringGetSubStr(ctl_string* s, size_t begin, size_t end, char* string)
 {
   CTL_RANGE(end>=s->size)
   {
-    ctl_errno=CTL_OUT_OF_RANGE;
+    ctl_string_errno=CTL_OUT_OF_RANGE;
     return 1;
   }
   strncpy(string,s->string+begin,end-begin+1);
@@ -330,7 +330,7 @@ int ctl_StringSetSubStr(ctl_string* s, size_t begin, size_t end, char* string)
   size_t diff=len2-len1;
   CTL_RANGE(end>=s->size)
   {
-    ctl_errno=CTL_OUT_OF_RANGE;
+    ctl_string_errno=CTL_OUT_OF_RANGE;
     return 1;
   }
   if(!diff)
@@ -349,7 +349,7 @@ int ctl_StringSetSubStr(ctl_string* s, size_t begin, size_t end, char* string)
     secure=malloc_beebs(alloc);
     if(!secure)
     {
-      ctl_errno=CTL_OUT_OF_MEMORY;
+      ctl_string_errno=CTL_OUT_OF_MEMORY;
       return 1;
     }
     memcpy(secure, s->string, s->alloc);
@@ -388,7 +388,7 @@ size_t ctl_StringFindChar(ctl_string* s, char value)
   temp=strchr(s->string,value);
   if(!temp)
   {
-    ctl_errno = CTL_NOT_FOUND;
+    ctl_string_errno = CTL_NOT_FOUND;
     return 0;
   }
   return temp-s->string;
@@ -399,13 +399,13 @@ size_t ctl_StringFindNextChar(ctl_string* s, size_t pos, char value)
   char* temp;
   CTL_RANGE(pos>=s->size)
   {
-    ctl_errno = CTL_OUT_OF_RANGE;
+    ctl_string_errno = CTL_OUT_OF_RANGE;
     return 0;
   }
   temp=strchr(s->string+pos,value);
   if(!temp)
   {
-    ctl_errno = CTL_NOT_FOUND;
+    ctl_string_errno = CTL_NOT_FOUND;
     return 0;
   }
   return temp-s->string;
@@ -417,7 +417,7 @@ size_t ctl_StringFindStr(ctl_string* s, const char* string)
   temp=strstr(s->string,string);
   if(!temp)
   {
-    ctl_errno = CTL_NOT_FOUND;
+    ctl_string_errno = CTL_NOT_FOUND;
     return 0;
   }
   return temp-s->string;
@@ -428,13 +428,13 @@ size_t ctl_StringFindNextStr(ctl_string* s, size_t pos, const char* string)
   char* temp;
   CTL_RANGE(pos>=s->size)
   {
-    ctl_errno = CTL_OUT_OF_RANGE;
+    ctl_string_errno = CTL_OUT_OF_RANGE;
     return 0;
   }
   temp=strstr(s->string+pos,string);
   if(!temp)
   {
-    ctl_errno = CTL_NOT_FOUND;
+    ctl_string_errno = CTL_NOT_FOUND;
     return 0;
   }
   return temp-s->string;
