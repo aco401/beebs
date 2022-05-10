@@ -194,7 +194,7 @@ void xbinGCD(uint64 a, uint64 b, volatile uint64 *pu, volatile uint64 *pv)
 /* ------------------------------ main ------------------------------ */
 static uint64 in_a, in_b, in_m;
 
-int aha_mont64_benchmark() {
+int beebs_aha_mont64_benchmark() {
    uint64 a, b, m, hr, p1hi, p1lo, p1, p, abar, bbar;
    uint64 phi, plo;
    volatile uint64 rinv, mprime;
@@ -270,7 +270,7 @@ int aha_mont64_benchmark() {
    return errors;
 }
 
-void aha_mont64_initialise_benchmark()
+void beebs_aha_mont64_initialise_benchmark()
 {
    in_m = 0xfae849273928f89fLL;             // Must be odd.
    in_b = 0x14736defb9330573LL;             // Must be smaller than m.
@@ -278,7 +278,7 @@ void aha_mont64_initialise_benchmark()
 }
 
 // r is the number of errors therefore if r = 0 then output a 1 for correct
-int aha_mont64_beebs_verify_benchmark(int r)
+int beebs_aha_mont64_verify_benchmark(int r)
 {
    if (r != 0)
       return 0;

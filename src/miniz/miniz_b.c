@@ -52,7 +52,7 @@ beebs_miniz_verify_benchmark (int res __attribute ((unused)) )
 extern void  init_heap (void);
 
 void
-initialise_miniz_benchmark (void)
+beebs_miniz_initialise_benchmark (void)
 {
   init_heap ();			/* Set up BEEBS heap */
 }
