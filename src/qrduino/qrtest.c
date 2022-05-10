@@ -47,13 +47,13 @@ beebs_qrduino_benchmark (void)
   return 0;
 }
 
-extern void init_heap (void);
+extern void qrduino_init_heap (void);
 
 void beebs_qrduino_initialise_benchmark() {
   static const char *in_encode = "http://www.mageec.com";
   encode = in_encode;
   size = 22;
-  init_heap ();
+  qrduino_init_heap ();
 }
 
 int beebs_qrduino_verify_benchmark(int unused) {
