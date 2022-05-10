@@ -86,7 +86,7 @@
    accesses beyond the bounds of the arrays, I've increased the array sizes
    to remove the warnings, but we should investigate the code below to
    ensure that the algorithm is doing the right thing.  */
-float          ludcmp_a[8][9], b[6], x[6];
+float          ludcmp_a[8][9], ludcmp_b[6], x[6];
 
 int             ludcmp( /* int nmax, */ int n, float eps);
 
@@ -129,9 +129,9 @@ ludcmp( /* int nmax, */ int n, float eps)
 			ludcmp_a[i + 1][j] = w;
 		}
 	}
-	y[0] = b[0];
+	y[0] = ludcmp_b[0];
 	for (i = 1; i <= n; i++) {
-		w = b[i];
+		w = ludcmp_b[i];
 		for (j = 0; j < i; j++)
 			w -= ludcmp_a[i][j] * y[j];
 		y[i] = w;
@@ -174,7 +174,7 @@ beebs_ludcmp_benchmark (void)
                           ludcmp_a[i][j] *= 10.0;
                   w += ludcmp_a[i][j];
           }
-          b[i] = w;
+          ludcmp_b[i] = w;
   }
 
   chkerr = ludcmp( /* nmax, */ n, eps);
@@ -195,7 +195,7 @@ int beebs_ludcmp_verify_benchmark(int unused)
   float exp_x[] = {1, 1, 0.999999821186065673828125, 1, 1.00000011920928955078125, 1};
   int i, j;
   for (i=0; i<6; i++) {
-    if (b[i] != exp_b[i])
+    if (ludcmp_b[i] != exp_b[i])
       return 0;
     if (x[i] != exp_x[i])
       return 0;

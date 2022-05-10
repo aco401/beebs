@@ -110,7 +110,7 @@ typedef struct {
 } Test;
 
 
-bool TestCompare(Test item1, Test item2) { return (item1.value < item2.value); }
+bool mergesort_TestCompare(Test item1, Test item2) { return (item1.value < item2.value); }
 
 typedef bool (*Comparison)(Test, Test);
 
@@ -130,7 +130,7 @@ long BinaryLast(const Test array[], const long index, const Range range, const C
 
 
 /* n^2 sorting algorithm used to sort tiny chunks of the full array */
-void InsertionSort(Test array[], const Range range, const Comparison compare) {
+void mergesort_InsertionSort(Test array[], const Range range, const Comparison compare) {
 	long i;
 	for (i = range.start + 1; i < range.end; i++) {
 		const Test temp = array[i]; long j;
@@ -146,7 +146,7 @@ void MergeSortR(Test array[], const Range range, const Comparison compare, Test 
 	Range A, B;
 
 	if (Range_length(range) < 32) {
-		InsertionSort(array, range, compare);
+		mergesort_InsertionSort(array, range, compare);
 		return;
 	}
 
@@ -187,42 +187,42 @@ void MergeSort(Test array[], const long array_count, const Comparison compare) {
 }
 
 
-long TestingPathological(long index, long total) {
+long mergesort_TestingPathological(long index, long total) {
 	if (index == 0) return 10;
 	else if (index < total/2) return 11;
 	else if (index == total - 1) return 10;
 	return 9;
 }
 
-long TestingRandom(long index, long total) {
+long mergesort_TestingRandom(long index, long total) {
 	return rand_beebs();
 }
 
-long TestingMostlyDescending(long index, long total) {
+long mergesort_TestingMostlyDescending(long index, long total) {
 	return total - index + rand_beebs() * 1.0/RAND_MAX * 5 - 2.5;
 }
 
-long TestingMostlyAscending(long index, long total) {
+long mergesort_TestingMostlyAscending(long index, long total) {
 	return index + rand_beebs() * 1.0/RAND_MAX * 5 - 2.5;
 }
 
-long TestingAscending(long index, long total) {
+long mergesort_TestingAscending(long index, long total) {
 	return index;
 }
 
-long TestingDescending(long index, long total) {
+long mergesort_TestingDescending(long index, long total) {
 	return total - index;
 }
 
-long TestingEqual(long index, long total) {
+long mergesort_TestingEqual(long index, long total) {
 	return 1000;
 }
 
-long TestingJittered(long index, long total) {
+long mergesort_TestingJittered(long index, long total) {
 	return (rand_beebs() * 1.0/RAND_MAX <= 0.9) ? index : (index - 2);
 }
 
-long TestingMostlyEqual(long index, long total) {
+long mergesort_TestingMostlyEqual(long index, long total) {
 	return 1000 + rand_beebs() * 1.0/RAND_MAX * 4;
 }
 
@@ -239,18 +239,18 @@ beebs_mergesort_initialise_benchmark (void)
 
 int beebs_mergesort_benchmark() {
 	long total, index, test_case;
-	Comparison compare = TestCompare;
+	Comparison compare = mergesort_TestCompare;
 
-	__typeof__(&TestingPathological) test_cases[] = {
-		TestingPathological,
-		TestingRandom,
-		TestingMostlyDescending,
-		TestingMostlyAscending,
-		TestingAscending,
-		TestingDescending,
-		TestingEqual,
-		TestingJittered,
-		TestingMostlyEqual
+	__typeof__(&mergesort_TestingPathological) test_cases[] = {
+		mergesort_TestingPathological,
+		mergesort_TestingRandom,
+		mergesort_TestingMostlyDescending,
+		mergesort_TestingMostlyAscending,
+		mergesort_TestingAscending,
+		mergesort_TestingDescending,
+		mergesort_TestingEqual,
+		mergesort_TestingJittered,
+		mergesort_TestingMostlyEqual
 	};
 
 	/* initialize the random-number generator. */

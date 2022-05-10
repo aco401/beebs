@@ -103,7 +103,7 @@
 
 
 
-long int a[20][20], b[20], x[20];
+long int ud_a[20][20], ud_b[20], ud_x[20];
 
 int ud_ludcmp(int nmax, int n);
 
@@ -118,7 +118,7 @@ int ud_ludcmp(int nmax, int n);
 /*  } */
 
 /* Write to CHKERR from BENCHMARK to ensure calls are not optimised away.  */
-volatile int chkerr = 0;
+volatile int ud_chkerr = 0;
 
 
 
@@ -152,16 +152,16 @@ beebs_ud_benchmark()
       w = 0.0;              /* data to fill in cells */
       for(j = 0; j <= n; j++)
         {
-          a[i][j] = (i + 1) + (j + 1);
+          ud_a[i][j] = (i + 1) + (j + 1);
           if(i == j)            /* only once per loop pass */
-            a[i][j] *= 2.0;
-          w += a[i][j];
+            ud_a[i][j] *= 2.0;
+          w += ud_a[i][j];
         }
-      b[i] = w;
+      ud_b[i] = w;
     }
 
   /*  chkerr = ludcmp(nmax, n, eps); */
-  chkerr = ud_ludcmp(nmax,n);
+  ud_chkerr = ud_ludcmp(nmax,n);
   return 0;
 }
 
@@ -176,37 +176,37 @@ int ud_ludcmp(int nmax, int n)
       /* if(fabs(a[i][i]) <= eps) return(1); */
       for(j = i+1; j <= n; j++) /* triangular loop vs. i */
         {
-          w = a[j][i];
+          w = ud_a[j][i];
           if(i != 0)            /* sub-loop is conditional, done
                                    all iterations except first of the
                                    OUTER loop */
             for(k = 0; k < i; k++)
-              w -= a[j][k] * a[k][i];
-          a[j][i] = w / a[i][i];
+              w -= ud_a[j][k] * ud_a[k][i];
+          ud_a[j][i] = w / ud_a[i][i];
         }
       for(j = i+1; j <= n; j++) /* triangular loop vs. i */
         {
-          w = a[i+1][j];
+          w = ud_a[i+1][j];
           for(k = 0; k <= i; k++) /* triangular loop vs. i */
-            w -= a[i+1][k] * a[k][j];
-          a[i+1][j] = w;
+            w -= ud_a[i+1][k] * ud_a[k][j];
+          ud_a[i+1][j] = w;
         }
     }
-  y[0] = b[0];
+  y[0] = ud_b[0];
   for(i = 1; i <= n; i++)       /* iterates n times */
     {
-      w = b[i];
+      w = ud_b[i];
       for(j = 0; j < i; j++)    /* triangular sub loop */
-        w -= a[i][j] * y[j];
+        w -= ud_a[i][j] * y[j];
       y[i] = w;
     }
-  x[n] = y[n] / a[n][n];
+  ud_x[n] = y[n] / ud_a[n][n];
   for(i = n-1; i >= 0; i--)     /* iterates n times */
     {
       w = y[i];
       for(j = i+1; j <= n; j++) /* triangular sub loop */
-        w -= a[i][j] * x[j];
-      x[i] = w / a[i][i] ;
+        w -= ud_a[i][j] * ud_x[j];
+      ud_x[i] = w / ud_a[i][i] ;
     }
   return(0);
 }

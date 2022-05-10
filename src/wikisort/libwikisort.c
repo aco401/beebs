@@ -91,7 +91,7 @@ typedef struct {
 	int index;
 } Test;
 
-bool TestCompare(Test item1, Test item2) { return (item1.value < item2.value); }
+bool mergesort_TestCompare(Test item1, Test item2) { return (item1.value < item2.value); }
 
 typedef bool (*Comparison)(Test, Test);
 
@@ -169,7 +169,7 @@ long BinaryLast(const Test array[], const long index, const Range range, const C
 }
 
 /* n^2 sorting algorithm used to sort tiny chunks of the full array */
-void InsertionSort(Test array[], const Range range, const Comparison compare) {
+void mergesort_InsertionSort(Test array[], const Range range, const Comparison compare) {
 	long i;
 	for (i = range.start + 1; i < range.end; i++) {
 		const Test temp = array[i]; long j;
@@ -302,7 +302,7 @@ void WikiSort(Test array[], const long size, const Comparison compare) {
 
 	/* if there are 32 or fewer items, just insertion sort the entire array */
 	if (size <= 32) {
-		InsertionSort(array, MakeRange(0, size), compare);
+		mergesort_InsertionSort(array, MakeRange(0, size), compare);
 		return;
 	}
 
@@ -324,7 +324,7 @@ void WikiSort(Test array[], const long size, const Comparison compare) {
 
 		end = decimal;
 
-		InsertionSort(array, MakeRange(start, end), compare);
+		mergesort_InsertionSort(array, MakeRange(start, end), compare);
 	}
 
 	/* then merge sort the higher levels, which can be 32-63, 64-127, 128-255, etc. */
@@ -632,7 +632,7 @@ void WikiSort(Test array[], const long size, const Comparison compare) {
 
 			/* when we're finished with this step we should have b1 b2 left over, where one of the buffers is all jumbled up */
 			/* insertion sort the jumbled up buffer, then redistribute them back into the array using the opposite process used for creating the buffer */
-			InsertionSort(array, level2, compare);
+			mergesort_InsertionSort(array, level2, compare);
 
 			/* redistribute bufferA back into the array */
 			level_start = levelA.start;
@@ -671,48 +671,48 @@ void WikiSort(Test array[], const long size, const Comparison compare) {
 
 
 
-long TestingPathological(long index, long total) {
+long wikisort_TestingPathological(long index, long total) {
 	if (index == 0) return 10;
 	else if (index < total/2) return 11;
 	else if (index == total - 1) return 10;
 	return 9;
 }
 
-long TestingRandom(long index, long total) {
+long wikisort_TestingRandom(long index, long total) {
 	return rand_beebs();
 }
 
-long TestingMostlyDescending(long index, long total) {
+long wikisort_TestingMostlyDescending(long index, long total) {
 	return total - index + rand_beebs() * 1.0/RAND_MAX * 5 - 2.5;
 }
 
-long TestingMostlyAscending(long index, long total) {
+long wikisort_TestingMostlyAscending(long index, long total) {
 	return index + rand_beebs() * 1.0/RAND_MAX * 5 - 2.5;
 }
 
-long TestingAscending(long index, long total) {
+long wikisort_TestingAscending(long index, long total) {
 	return index;
 }
 
-long TestingDescending(long index, long total) {
+long wikisort_TestingDescending(long index, long total) {
 	return total - index;
 }
 
-long TestingEqual(long index, long total) {
+long wikisort_TestingEqual(long index, long total) {
 	return 1000;
 }
 
-long TestingJittered(long index, long total) {
+long wikisort_TestingJittered(long index, long total) {
 	return (rand_beebs() * 1.0/RAND_MAX <= 0.9) ? index : (index - 2);
 }
 
-long TestingMostlyEqual(long index, long total) {
+long wikisort_TestingMostlyEqual(long index, long total) {
 	return 1000 + rand_beebs() * 1.0/RAND_MAX * 4;
 }
 
 
 const long max_size = 400;
-Test array1[400];
+Test wikisort_array1[400];
 
 
 /* This benchmark does not support verification */
@@ -733,18 +733,18 @@ beebs_wikisort_initialise_benchmark (void)
 
 int beebs_wikisort_benchmark() {
 	long total, index, test_case;
-	Comparison compare = TestCompare;
+	Comparison compare = mergesort_TestCompare;
 
-	__typeof__(&TestingPathological) test_cases[] = {
-		TestingPathological,
-		TestingRandom,
-		TestingMostlyDescending,
-		TestingMostlyAscending,
-		TestingAscending,
-		TestingDescending,
-		TestingEqual,
-		TestingJittered,
-		TestingMostlyEqual
+	__typeof__(&wikisort_TestingPathological) test_cases[] = {
+		wikisort_TestingPathological,
+		wikisort_TestingRandom,
+		wikisort_TestingMostlyDescending,
+		wikisort_TestingMostlyAscending,
+		wikisort_TestingAscending,
+		wikisort_TestingDescending,
+		wikisort_TestingEqual,
+		wikisort_TestingJittered,
+		wikisort_TestingMostlyEqual
 	};
 
 	/* initialize the random-number generator */
@@ -764,10 +764,10 @@ int beebs_wikisort_benchmark() {
 			item.value = test_cases[test_case](index, total);
 			item.index = index;
 
-			array1[index] = item;
+			wikisort_array1[index] = item;
 		}
 
-		WikiSort(array1, total, compare);
+		WikiSort(wikisort_array1, total, compare);
 
 	}
 
