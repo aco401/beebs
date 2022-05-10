@@ -712,7 +712,7 @@ long wikisort_TestingMostlyEqual(long index, long total) {
 
 
 const long wikisort_max_size = 400;
-Test array1[400];
+Test wikisort_array1[400];
 
 
 /* This benchmark does not support verification */
@@ -764,10 +764,10 @@ int beebs_wikisort_benchmark() {
 			item.value = test_cases[test_case](index, total);
 			item.index = index;
 
-			array1[index] = item;
+			wikisort_array1[index] = item;
 		}
 
-		WikiSort(array1, total, compare);
+		WikiSort(wikisort_array1, total, compare);
 
 	}
 
