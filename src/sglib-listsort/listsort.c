@@ -37,7 +37,7 @@ struct ilist {
 
 #define ILIST_COMPARATOR(e1, e2) (e1->i - e2->i)
 
-int array[100] = {14, 66, 12, 41, 86, 69, 19, 77, 68, 38, 26, 42, 37, 23, 17, 29, 55, 13,
+int sglib_listsort_array[100] = {14, 66, 12, 41, 86, 69, 19, 77, 68, 38, 26, 42, 37, 23, 17, 29, 55, 13,
   90, 92, 76, 99, 10, 54, 57, 83, 40, 44, 75, 33, 24, 28, 80, 18, 78, 32, 93, 89, 52, 11,
   21, 96, 50, 15, 48, 63, 87, 20, 8, 85, 43, 16, 94, 88, 53, 84, 74, 91, 67, 36, 95, 61,
   64, 5, 30, 82, 72, 46, 59, 9, 7, 3, 39, 31, 4, 73, 70, 60, 58, 81, 56, 51, 45, 1, 6, 49,
@@ -108,7 +108,7 @@ int beebs_sglib_listsort_benchmark()
   the_list = NULL;
   for (i=0; i<100; i++) {
     l = malloc_beebs(sizeof(struct ilist));
-    l->i = array[i];
+    l->i = sglib_listsort_array[i];
     SGLIB_LIST_ADD(struct ilist, the_list, l, next_ptr);
   }
   // it is useless, but anyway, get parameters in the right order

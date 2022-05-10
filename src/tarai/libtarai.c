@@ -47,22 +47,22 @@ int tarai(int x, int y, int z)
     return y;
 }
 
-int x, y, z;
+int tarai_x, tarai_y, tarai_z;
 
 int beebs_tarai_benchmark()
 {
     volatile int cnt=0;
 
-    cnt = tarai(x, y, z);
+    cnt = tarai(tarai_x, tarai_y, tarai_z);
 
     return cnt;
 
 }
 
 void beebs_tarai_initialise_benchmark() {
-  x = 9;
-  y = 6;
-  z = 3;
+  tarai_x = 9;
+  tarai_y = 6;
+  tarai_z = 3;
 }
 
 int beebs_tarai_verify_benchmark(int r) {

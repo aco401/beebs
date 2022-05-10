@@ -43,7 +43,7 @@ typedef struct rbtree {
 SGLIB_DEFINE_RBTREE_PROTOTYPES(rbtree, left, right, color_field, CMPARATOR);
 SGLIB_DEFINE_RBTREE_FUNCTIONS(rbtree, left, right, color_field, CMPARATOR);
 
-int array[100] = {14, 66, 12, 41, 86, 69, 19, 77, 68, 38, 26, 42, 37, 23, 17, 29, 55, 13,
+int sglib_rbtree_array[100] = {14, 66, 12, 41, 86, 69, 19, 77, 68, 38, 26, 42, 37, 23, 17, 29, 55, 13,
   90, 92, 76, 99, 10, 54, 57, 83, 40, 44, 75, 33, 24, 28, 80, 18, 78, 32, 93, 89, 52, 11,
   21, 96, 50, 15, 48, 63, 87, 20, 8, 85, 43, 16, 94, 88, 53, 84, 74, 91, 67, 36, 95, 61,
   64, 5, 30, 82, 72, 46, 59, 9, 7, 3, 39, 31, 4, 73, 70, 60, 58, 81, 56, 51, 45, 1, 6, 49,
@@ -114,10 +114,10 @@ int beebs_sglib_rbtree_benchmark()
 
   the_tree = NULL;
   for (i=0; i<100; i++) {
-    e.n = array[i];
+    e.n = sglib_rbtree_array[i];
     if (sglib_rbtree_find_member(the_tree, &e)==NULL) {
       t = malloc_beebs(sizeof(struct rbtree));
-      t->n = array[i];
+      t->n = sglib_rbtree_array[i];
       sglib_rbtree_add(&the_tree, t);
     }
   }

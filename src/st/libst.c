@@ -47,9 +47,9 @@
 
 #define MAX 100
 
-void InitSeed(void);
-int RandomInteger();
-void Initialize(double[]);
+void st_InitSeed(void);
+int st_RandomInteger();
+void st_Initialize(double[]);
 void Calc_Sum_Mean(double[], double *, double *);
 void Calc_Var_Stddev(double[], double, double *, double *);
 void Calc_LinCorrCoef(double[], double[], double, double);
@@ -61,7 +61,7 @@ void Calc_LinCorrCoef(double[], double[], double, double);
  * correlation coefficient between the two arrays.
  */
 
-int Seed;
+int st_Seed;
 double ArrayA[MAX], ArrayB[MAX];
 double SumA, SumB;
 double Coef;
@@ -83,17 +83,17 @@ beebs_st_benchmark()
 
    double MeanA, MeanB, VarA, VarB, StddevA, StddevB /*, Coef*/;
 
-   InitSeed ();
+   st_InitSeed ();
 #ifdef POUT
    printf ("\n   *** Statictics TEST ***\n\n");
    StartTime = ttime();
 #endif
 
-   Initialize(ArrayA);
+   st_Initialize(ArrayA);
    Calc_Sum_Mean(ArrayA, &SumA, &MeanA);
    Calc_Var_Stddev(ArrayA, MeanA, &VarA, &StddevA);
 
-   Initialize(ArrayB);
+   st_Initialize(ArrayB);
    Calc_Sum_Mean(ArrayB, &SumB, &MeanB);
    Calc_Var_Stddev(ArrayB, MeanB, &VarB, &StddevB);
 
@@ -115,12 +115,12 @@ beebs_st_benchmark()
 }
 
 
-void InitSeed ()
+void st_InitSeed ()
 /*
  * Initializes the seed used in the random number generator.
  */
 {
-   Seed = 0;
+   st_Seed = 0;
 }
 
 
@@ -173,7 +173,7 @@ void Calc_LinCorrCoef(double ArrayA[], double ArrayB[], double MeanA, double Mea
 
 
 
-void Initialize(double Array[])
+void st_Initialize(double Array[])
 /*
  * Intializes the given array with random integers.
  */
@@ -181,17 +181,17 @@ void Initialize(double Array[])
   register int i;
 
 for (i=0; i < MAX; i++)
-   Array [i] = i + RandomInteger ()/8095.0;
+   Array [i] = i + st_RandomInteger ()/8095.0;
 }
 
 
-int RandomInteger()
+int st_RandomInteger()
 /*
  * Generates random integers between 0 and 8095
  */
 {
-   Seed = ((Seed * 133) + 81) % 8095;
-   return (Seed);
+   st_Seed = ((st_Seed * 133) + 81) % 8095;
+   return (st_Seed);
 }
 
 int beebs_st_verify_benchmark(int unused) {

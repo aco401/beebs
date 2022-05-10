@@ -37,7 +37,7 @@ int exec1(CHARTYPE *base, int n);
 void prep2(CHARTYPE *base, int m);
 int exec2(CHARTYPE *base, int n);
 
-char buf[] = "abacacbabbabbadcabdcabccacacbadbadbcabdcabcbadcbacabadbadcabcbacdcacabacabcabcbadcbacabadbadcabcbac";
+char stringsearch1_buf[] = "abacacbabbabbadcabdcabccacacbadbadbcabdcabcbadcbacabadbadcabcbacdcacabacabcabcbadcbacabadbadcabcbac";
 char search[] ="abc";
 static int size;
 
@@ -46,9 +46,9 @@ beebs_stringsearch1_benchmark (void)
 {
   int r;
   prep1((CHARTYPE *) search, size);
-  r = exec1((CHARTYPE *) buf, strlen(buf));
+  r = exec1((CHARTYPE *) stringsearch1_buf, strlen(stringsearch1_buf));
   prep2((CHARTYPE *) search, size);
-  return exec2((CHARTYPE *) buf, strlen(buf)) * r;
+  return exec2((CHARTYPE *) stringsearch1_buf, strlen(stringsearch1_buf)) * r;
 }
 
 void beebs_stringsearch1_initialise_benchmark() {

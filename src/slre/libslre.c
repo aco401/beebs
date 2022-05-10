@@ -453,7 +453,7 @@ int slre_match(const char *regexp, const char *s, int s_len,
   return foo(regexp, strlen(regexp), s, s_len, &info);
 }
 
-char text[] = "abbbababaabccababcacbcbcbabbabcbabcabcbbcbbac";
+char slre_text[] = "abbbababaabccababcacbcbcbabbabcbabcabcbbcbbac";
 char *regexes[] = {"(ab)+", "(b.+)+", "a[ab]*", "([ab^c][ab^c])+"};
 
 void
@@ -466,13 +466,13 @@ beebs_slre_initialise_benchmark (void)
 int beebs_slre_benchmark()
 {
   int i;
-  int len = strlen(text);
+  int len = strlen(slre_text);
   struct slre_cap captures;
   volatile int ret=0;
 
   for(i = 0; i < 4; ++i)
   {
-    ret += slre_match(regexes[i], text, len, &captures, 1);
+    ret += slre_match(regexes[i], slre_text, len, &captures, 1);
   }
 
   return ret;

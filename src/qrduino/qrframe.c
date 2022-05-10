@@ -36,7 +36,7 @@ static void *heap_end;
 /* Initialize the BEEBS heap pointers */
 
 void
-init_heap (void)
+qrduino_init_heap (void)
 {
     heap_ptr = (void *) heap;
     heap_end = heap_ptr + HEAP_SIZE;

@@ -126,7 +126,7 @@ ret0:
 }
 
 
-char *text = "abbaabbaababadcsdabbacasdaabbbaabbadabbacbbbaabbadabbacasdaabbbaabba";
+char *strstr_text = "abbaabbaababadcsdabbacasdaabbbaabbadabbacbbbaabbadabbacasdaabbbaabba";
 
 void
 beebs_strstr_initialise_benchmark (void)
@@ -137,7 +137,7 @@ beebs_strstr_initialise_benchmark (void)
 char *substr = "abba";
 int beebs_strstr_benchmark()
 {
-  char *f = text;
+  char *f = strstr_text;
   int n=0;
 
   do

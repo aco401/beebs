@@ -105,7 +105,7 @@
 
 long int a[20][20], b[20], x[20];
 
-int ludcmp(int nmax, int n);
+int ud_ludcmp(int nmax, int n);
 
 
 /*  static double fabs(double n) */
@@ -161,11 +161,11 @@ beebs_ud_benchmark()
     }
 
   /*  chkerr = ludcmp(nmax, n, eps); */
-  chkerr = ludcmp(nmax,n);
+  chkerr = ud_ludcmp(nmax,n);
   return 0;
 }
 
-int ludcmp(int nmax, int n)
+int ud_ludcmp(int nmax, int n)
 {
   int i, j, k;
   long w, y[100];
