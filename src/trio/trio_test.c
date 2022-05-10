@@ -32,21 +32,21 @@
 /* This version of the benchmark does not support verification */
 
 int
-beebs_verify_benchmark (int res __attribute ((unused)) )
+beebs_trio_verify_benchmark (int res __attribute ((unused)) )
 {
   return -1;
 }
 
 
 void
-initialise_benchmark (void)
+beebs_trio_initialise_benchmark (void)
 {
   init_heap ();			/* BEEBS memory allocator */
 }
 
 
 int
-benchmark (void)
+beebs_trio_benchmark (void)
 {
   char output[50];
 
