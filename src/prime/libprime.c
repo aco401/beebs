@@ -61,7 +61,7 @@ void swap (ulong* a, ulong* b) {
 }
 
 /* Write to this so call in BENCHMARK is not optimised away.  */
-volatile int result = 0;
+volatile int prime_result = 0;
 ulong prime_x;
 ulong y;
 
@@ -69,7 +69,7 @@ int
 beebs_prime_benchmark (void)
 {
   swap (&prime_x, &y);
-  result = (!(prime(prime_x) && prime(y)));
+  prime_result = (!(prime(prime_x) && prime(y)));
   return 0;
 }
 
@@ -80,7 +80,7 @@ void beebs_prime_initialise_benchmark() {
 
 int beebs_prime_verify_benchmark(int unused) {
   int expected = 0;
-  if (result != expected)
+  if (prime_result != expected)
     return 0;
   return 1;
 }
