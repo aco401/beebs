@@ -1016,7 +1016,7 @@ int answer[5][5][5][5] =
 
 
 
-int foo(int x)
+int ns_foo(int x)
 
 {
 
@@ -1097,7 +1097,7 @@ beebs_ns_benchmark(void)
 
 #else
 
-  foo(400);
+  ns_foo(400);
 
 #endif
 
