@@ -74,12 +74,12 @@ rand_beebs ()
 }
 
 
-long Min(const long a, const long b) {
+long wikisort_Min(const long a, const long b) {
 	if (a < b) return a;
 	return b;
 }
 
-long Max(const long a, const long b) {
+long wikisort_Max(const long a, const long b) {
 	if (a > b) return a;
 	return b;
 }
@@ -103,9 +103,9 @@ typedef struct {
 	long end;
 } Range;
 
-long Range_length(Range range) { return range.end - range.start; }
+long wikisort_Range_length(Range range) { return range.end - range.start; }
 
-Range MakeRange(const long start, const long end) {
+Range wikisort_MakeRange(const long start, const long end) {
 	Range range;
 	range.start = start;
 	range.end = end;
@@ -155,7 +155,7 @@ long BinaryFirst(const Test array[], const long index, const Range range, const 
 }
 
 /* find the index of the last value within the range that is equal to array[index], plus 1 */
-long BinaryLast(const Test array[], const long index, const Range range, const Comparison compare) {
+long wikisort_BinaryLast(const Test array[], const long index, const Range range, const Comparison compare) {
 	long start = range.start, end = range.end - 1;
 	while (start < end) {
 		long mid = start + (end - start)/2;
@@ -182,7 +182,7 @@ void InsertionSort(Test array[], const Range range, const Comparison compare) {
 /* reverse a range within the array */
 void Reverse(Test array[], const Range range) {
 	long index;
-	for (index = Range_length(range)/2 - 1; index >= 0; index--)
+	for (index = wikisort_Range_length(range)/2 - 1; index >= 0; index--)
 		Swap(array[range.start + index], array[range.end - index - 1]);
 }
 
@@ -197,29 +197,29 @@ void BlockSwap(Test array[], const long start1, const long start2, const long bl
 void Rotate(Test array[], const long amount, const Range range, Test cache[], const long cache_size) {
 	long split; Range range1, range2;
 
-	if (Range_length(range) == 0) return;
+	if (wikisort_Range_length(range) == 0) return;
 
 	if (amount >= 0)
 		split = range.start + amount;
 	else
 		split = range.end + amount;
 
-	range1 = MakeRange(range.start, split);
-	range2 = MakeRange(split, range.end);
+	range1 = wikisort_MakeRange(range.start, split);
+	range2 = wikisort_MakeRange(split, range.end);
 
 	/* if the smaller of the two ranges fits into the cache, it's *slightly* faster copying it there and shifting the elements over */
-	if (Range_length(range1) <= Range_length(range2)) {
-		if (Range_length(range1) <= cache_size) {
-			memcpy(&cache[0], &array[range1.start], Range_length(range1) * sizeof(array[0]));
-			memmove(&array[range1.start], &array[range2.start], Range_length(range2) * sizeof(array[0]));
-			memcpy(&array[range1.start + Range_length(range2)], &cache[0], Range_length(range1) * sizeof(array[0]));
+	if (wikisort_Range_length(range1) <= wikisort_Range_length(range2)) {
+		if (wikisort_Range_length(range1) <= cache_size) {
+			memcpy(&cache[0], &array[range1.start], wikisort_Range_length(range1) * sizeof(array[0]));
+			memmove(&array[range1.start], &array[range2.start], wikisort_Range_length(range2) * sizeof(array[0]));
+			memcpy(&array[range1.start + wikisort_Range_length(range2)], &cache[0], wikisort_Range_length(range1) * sizeof(array[0]));
 			return;
 		}
 	} else {
-		if (Range_length(range2) <= cache_size) {
-			memcpy(&cache[0], &array[range2.start], Range_length(range2) * sizeof(array[0]));
-			memmove(&array[range2.end - Range_length(range1)], &array[range1.start], Range_length(range1) * sizeof(array[0]));
-			memcpy(&array[range1.start], &cache[0], Range_length(range2) * sizeof(array[0]));
+		if (wikisort_Range_length(range2) <= cache_size) {
+			memcpy(&cache[0], &array[range2.start], wikisort_Range_length(range2) * sizeof(array[0]));
+			memmove(&array[range2.end - wikisort_Range_length(range1)], &array[range1.start], wikisort_Range_length(range1) * sizeof(array[0]));
+			memcpy(&array[range1.start], &cache[0], wikisort_Range_length(range2) * sizeof(array[0]));
 			return;
 		}
 	}
@@ -232,14 +232,14 @@ void Rotate(Test array[], const long amount, const Range range, Test cache[], co
 /* standard merge operation using an internal or external buffer */
 void WikiMerge(Test array[], const Range buffer, const Range A, const Range B, const Comparison compare, Test cache[], const long cache_size) {
 	/* if A fits into the cache, use that instead of the internal buffer */
-	if (Range_length(A) <= cache_size) {
+	if (wikisort_Range_length(A) <= cache_size) {
 		Test *A_index = &cache[0];
 		Test *B_index = &array[B.start];
 		Test *insert_index = &array[A.start];
-		Test *A_last = &cache[Range_length(A)];
+		Test *A_last = &cache[wikisort_Range_length(A)];
 		Test *B_last = &array[B.end];
 
-		if (Range_length(B) > 0 && Range_length(A) > 0) {
+		if (wikisort_Range_length(B) > 0 && wikisort_Range_length(A) > 0) {
 			while (true) {
 				if (!compare(*B_index, *A_index)) {
 					*insert_index = *A_index;
@@ -262,24 +262,24 @@ void WikiMerge(Test array[], const Range buffer, const Range A, const Range B, c
 		/* when this algorithm is finished, 'buffer' will contain its original contents, but in a different order */
 		long A_count = 0, B_count = 0, insert = 0;
 
-		if (Range_length(B) > 0 && Range_length(A) > 0) {
+		if (wikisort_Range_length(B) > 0 && wikisort_Range_length(A) > 0) {
 			while (true) {
 				if (!compare(array[B.start + B_count], array[buffer.start + A_count])) {
 					Swap(array[A.start + insert], array[buffer.start + A_count]);
 					A_count++;
 					insert++;
-					if (A_count >= Range_length(A)) break;
+					if (A_count >= wikisort_Range_length(A)) break;
 				} else {
 					Swap(array[A.start + insert], array[B.start + B_count]);
 					B_count++;
 					insert++;
-					if (B_count >= Range_length(B)) break;
+					if (B_count >= wikisort_Range_length(B)) break;
 				}
 			}
 		}
 
 		/* swap the remainder of A into the final array */
-		BlockSwap(array, buffer.start + A_count, A.start + insert, Range_length(A) - A_count);
+		BlockSwap(array, buffer.start + A_count, A.start + insert, wikisort_Range_length(A) - A_count);
 	}
 }
 
@@ -302,7 +302,7 @@ void WikiSort(Test array[], const long size, const Comparison compare) {
 
 	/* if there are 32 or fewer items, just insertion sort the entire array */
 	if (size <= 32) {
-		InsertionSort(array, MakeRange(0, size), compare);
+		InsertionSort(array, wikisort_MakeRange(0, size), compare);
 		return;
 	}
 
@@ -324,7 +324,7 @@ void WikiSort(Test array[], const long size, const Comparison compare) {
 
 		end = decimal;
 
-		InsertionSort(array, MakeRange(start, end), compare);
+		InsertionSort(array, wikisort_MakeRange(start, end), compare);
 	}
 
 	/* then merge sort the higher levels, which can be 32-63, 64-127, 128-255, etc. */
@@ -334,10 +334,10 @@ void WikiSort(Test array[], const long size, const Comparison compare) {
 
 		/* as an optimization, we really only need to pull out an internal buffer once for each level of merges */
 		/* after that we can reuse the same buffer over and over, then redistribute it when we're finished with this level */
-		Range level1 = MakeRange(0, 0);
-		Range level2 = MakeRange(0, 0);
-		Range levelA = MakeRange(0, 0);
-		Range levelB = MakeRange(0, 0);
+		Range level1 = wikisort_MakeRange(0, 0);
+		Range level2 = wikisort_MakeRange(0, 0);
+		Range levelA = wikisort_MakeRange(0, 0);
+		Range levelB = wikisort_MakeRange(0, 0);
 
 		decimal = fractional = 0;
 		while (decimal < size) {
@@ -357,26 +357,26 @@ void WikiSort(Test array[], const long size, const Comparison compare) {
 
 			if (compare(array[end - 1], array[start])) {
 				/* the two ranges are in reverse order, so a simple rotation should fix it */
-				Rotate(array, mid - start, MakeRange(start, end), cache, cache_size);
+				Rotate(array, mid - start, wikisort_MakeRange(start, end), cache, cache_size);
 			} else if (compare(array[mid], array[mid - 1])) {
 				Range bufferA, bufferB, buffer1, buffer2, blockA, blockB, firstA, lastA, lastB;
 				long indexA, minA, findA;
 				Test min_value;
 
 				/* these two ranges weren't already in order, so we'll need to merge them! */
-				Range A = MakeRange(start, mid), B = MakeRange(mid, end);
+				Range A = wikisort_MakeRange(start, mid), B = wikisort_MakeRange(mid, end);
 
 				/* try to fill up two buffers with unique values in ascending order */
-				if (Range_length(A) <= cache_size) {
-					memcpy(&cache[0], &array[A.start], Range_length(A) * sizeof(array[0]));
-					WikiMerge(array, MakeRange(0, 0), A, B, compare, cache, cache_size);
+				if (wikisort_Range_length(A) <= cache_size) {
+					memcpy(&cache[0], &array[A.start], wikisort_Range_length(A) * sizeof(array[0]));
+					WikiMerge(array, wikisort_MakeRange(0, 0), A, B, compare, cache, cache_size);
 					continue;
 				}
 
-				if (Range_length(level1) > 0) {
+				if (wikisort_Range_length(level1) > 0) {
 					/* reuse the buffers we found in a previous iteration */
-					bufferA = MakeRange(A.start, A.start);
-					bufferB = MakeRange(B.end, B.end);
+					bufferA = wikisort_MakeRange(A.start, A.start);
+					bufferB = wikisort_MakeRange(B.end, B.end);
 					buffer1 = level1;
 					buffer2 = level2;
 
@@ -395,18 +395,18 @@ void WikiSort(Test array[], const long size, const Comparison compare) {
 					/* this is because the other buffer is used as a swap space for merging the A blocks into the B values that follow it, */
 					/* but we can just use the cache as the buffer instead. this skips some memmoves and an insertion sort */
 					if (buffer_size <= cache_size) {
-						buffer2 = MakeRange(A.start, A.start);
+						buffer2 = wikisort_MakeRange(A.start, A.start);
 
-						if (Range_length(buffer1) == buffer_size) {
+						if (wikisort_Range_length(buffer1) == buffer_size) {
 							/* we found enough values for the buffer in A */
-							bufferA = MakeRange(buffer1.start, buffer1.start + buffer_size);
-							bufferB = MakeRange(B.end, B.end);
-							buffer1 = MakeRange(A.start, A.start + buffer_size);
+							bufferA = wikisort_MakeRange(buffer1.start, buffer1.start + buffer_size);
+							bufferB = wikisort_MakeRange(B.end, B.end);
+							buffer1 = wikisort_MakeRange(A.start, A.start + buffer_size);
 
 						} else {
 							/* we were unable to find enough unique values in A, so try B */
-							bufferA = MakeRange(buffer1.start, buffer1.start);
-							buffer1 = MakeRange(A.start, A.start);
+							bufferA = wikisort_MakeRange(buffer1.start, buffer1.start);
+							buffer1 = wikisort_MakeRange(A.start, A.start);
 
 							/* the last value is guaranteed to be the first unique value we encounter, so we can start searching at the next index */
 							count = 1;
@@ -416,9 +416,9 @@ void WikiSort(Test array[], const long size, const Comparison compare) {
 										break;
 							buffer1.end = buffer1.start + count;
 
-							if (Range_length(buffer1) == buffer_size) {
-								bufferB = MakeRange(buffer1.start, buffer1.start + buffer_size);
-								buffer1 = MakeRange(B.end - buffer_size, B.end);
+							if (wikisort_Range_length(buffer1) == buffer_size) {
+								bufferB = wikisort_MakeRange(buffer1.start, buffer1.start + buffer_size);
+								buffer1 = wikisort_MakeRange(B.end - buffer_size, B.end);
 							}
 						}
 					} else {
@@ -430,17 +430,17 @@ void WikiSort(Test array[], const long size, const Comparison compare) {
 									break;
 						buffer2.end = buffer2.start + count;
 
-						if (Range_length(buffer2) == buffer_size) {
+						if (wikisort_Range_length(buffer2) == buffer_size) {
 							/* we found enough values for both buffers in A */
-							bufferA = MakeRange(buffer2.start, buffer2.start + buffer_size * 2);
-							bufferB = MakeRange(B.end, B.end);
-							buffer1 = MakeRange(A.start, A.start + buffer_size);
-							buffer2 = MakeRange(A.start + buffer_size, A.start + buffer_size * 2);
+							bufferA = wikisort_MakeRange(buffer2.start, buffer2.start + buffer_size * 2);
+							bufferB = wikisort_MakeRange(B.end, B.end);
+							buffer1 = wikisort_MakeRange(A.start, A.start + buffer_size);
+							buffer2 = wikisort_MakeRange(A.start + buffer_size, A.start + buffer_size * 2);
 
-						} else if (Range_length(buffer1) == buffer_size) {
+						} else if (wikisort_Range_length(buffer1) == buffer_size) {
 							/* we found enough values for one buffer in A, so we'll need to find one buffer in B */
-							bufferA = MakeRange(buffer1.start, buffer1.start + buffer_size);
-							buffer1 = MakeRange(A.start, A.start + buffer_size);
+							bufferA = wikisort_MakeRange(buffer1.start, buffer1.start + buffer_size);
+							buffer1 = wikisort_MakeRange(A.start, A.start + buffer_size);
 
 							/* like before, the last value is guaranteed to be the first unique value we encounter, so we can start searching at the next index */
 							count = 1;
@@ -450,9 +450,9 @@ void WikiSort(Test array[], const long size, const Comparison compare) {
 										break;
 							buffer2.end = buffer2.start + count;
 
-							if (Range_length(buffer2) == buffer_size) {
-								bufferB = MakeRange(buffer2.start, buffer2.start + buffer_size);
-								buffer2 = MakeRange(B.end - buffer_size, B.end);
+							if (wikisort_Range_length(buffer2) == buffer_size) {
+								bufferB = wikisort_MakeRange(buffer2.start, buffer2.start + buffer_size);
+								buffer2 = wikisort_MakeRange(B.end - buffer_size, B.end);
 
 							} else buffer1.end = buffer1.start; /* failure */
 						} else {
@@ -471,56 +471,56 @@ void WikiSort(Test array[], const long size, const Comparison compare) {
 										break;
 							buffer2.end = buffer2.start + count;
 
-							if (Range_length(buffer2) == buffer_size) {
-								bufferA = MakeRange(A.start, A.start);
-								bufferB = MakeRange(buffer2.start, buffer2.start + buffer_size * 2);
-								buffer1 = MakeRange(B.end - buffer_size, B.end);
-								buffer2 = MakeRange(buffer1.start - buffer_size, buffer1.start);
+							if (wikisort_Range_length(buffer2) == buffer_size) {
+								bufferA = wikisort_MakeRange(A.start, A.start);
+								bufferB = wikisort_MakeRange(buffer2.start, buffer2.start + buffer_size * 2);
+								buffer1 = wikisort_MakeRange(B.end - buffer_size, B.end);
+								buffer2 = wikisort_MakeRange(buffer1.start - buffer_size, buffer1.start);
 
 							} else buffer1.end = buffer1.start; /* failure */
 						}
 					}
 
-					if (Range_length(buffer1) < buffer_size) {
+					if (wikisort_Range_length(buffer1) < buffer_size) {
 						/* we failed to fill both buffers with unique values, which implies we're merging two subarrays with a lot of the same values repeated */
 						/* we can use this knowledge to write a merge operation that is optimized for arrays of repeating values */
-						while (Range_length(A) > 0 && Range_length(B) > 0) {
+						while (wikisort_Range_length(A) > 0 && wikisort_Range_length(B) > 0) {
 							/* find the first place in B where the first item in A needs to be inserted */
 							long mid = BinaryFirst(array, A.start, B, compare);
 
 							/* rotate A into place */
 							long amount = mid - A.end;
-							Rotate(array, -amount, MakeRange(A.start, mid), cache, cache_size);
+							Rotate(array, -amount, wikisort_MakeRange(A.start, mid), cache, cache_size);
 
 							/* calculate the new A and B ranges */
 							B.start = mid;
-							A = MakeRange(BinaryLast(array, A.start + amount, A, compare), B.start);
+							A = wikisort_MakeRange(wikisort_BinaryLast(array, A.start + amount, A, compare), B.start);
 						}
 
 						continue;
 					}
 
 					/* move the unique values to the start of A if needed */
-					length = Range_length(bufferA);
+					length = wikisort_Range_length(bufferA);
 					count = 0;
 					for (index = bufferA.start; count < length; index--) {
 						if (index == A.start || compare(array[index - 1], array[index]) || compare(array[index], array[index - 1])) {
-							Rotate(array, -count, MakeRange(index + 1, bufferA.start + 1), cache, cache_size);
+							Rotate(array, -count, wikisort_MakeRange(index + 1, bufferA.start + 1), cache, cache_size);
 							bufferA.start = index + count; count++;
 						}
 					}
-					bufferA = MakeRange(A.start, A.start + length);
+					bufferA = wikisort_MakeRange(A.start, A.start + length);
 
 					/* move the unique values to the end of B if needed */
-					length = Range_length(bufferB);
+					length = wikisort_Range_length(bufferB);
 					count = 0;
 					for (index = bufferB.start; count < length; index++) {
 						if (index == B.end - 1 || compare(array[index], array[index + 1]) || compare(array[index + 1], array[index])) {
-							Rotate(array, count, MakeRange(bufferB.start, index), cache, cache_size);
+							Rotate(array, count, wikisort_MakeRange(bufferB.start, index), cache, cache_size);
 							bufferB.start = index - count; count++;
 						}
 					}
-					bufferB = MakeRange(B.end - length, B.end);
+					bufferB = wikisort_MakeRange(B.end - length, B.end);
 
 					/* reuse these buffers next time! */
 					level1 = buffer1;
@@ -530,8 +530,8 @@ void WikiSort(Test array[], const long size, const Comparison compare) {
 				}
 
 				/* break the remainder of A into blocks. firstA is the uneven-sized first A block */
-				blockA = MakeRange(bufferA.end, A.end);
-				firstA = MakeRange(bufferA.end, bufferA.end + Range_length(blockA) % block_size);
+				blockA = wikisort_MakeRange(bufferA.end, A.end);
+				firstA = wikisort_MakeRange(bufferA.end, bufferA.end + wikisort_Range_length(blockA) % block_size);
 
 				/* swap the second value of each A block with the value in buffer1 */
 				index = 0;
@@ -541,22 +541,22 @@ void WikiSort(Test array[], const long size, const Comparison compare) {
 				/* start rolling the A blocks through the B blocks! */
 				/* whenever we leave an A block behind, we'll need to merge the previous A block with any B blocks that follow it, so track that information as well */
 				lastA = firstA;
-				lastB = MakeRange(0, 0);
-				blockB = MakeRange(B.start, B.start + Min(block_size, Range_length(B) - Range_length(bufferB)));
-				blockA.start += Range_length(firstA);
+				lastB = wikisort_MakeRange(0, 0);
+				blockB = wikisort_MakeRange(B.start, B.start + wikisort_Min(block_size, wikisort_Range_length(B) - wikisort_Range_length(bufferB)));
+				blockA.start += wikisort_Range_length(firstA);
 
 				minA = blockA.start;
 				min_value = array[minA];
 				indexA = 0;
 
-				if (Range_length(lastA) <= cache_size)
-					memcpy(&cache[0], &array[lastA.start], Range_length(lastA) * sizeof(array[0]));
+				if (wikisort_Range_length(lastA) <= cache_size)
+					memcpy(&cache[0], &array[lastA.start], wikisort_Range_length(lastA) * sizeof(array[0]));
 				else
-					BlockSwap(array, lastA.start, buffer2.start, Range_length(lastA));
+					BlockSwap(array, lastA.start, buffer2.start, wikisort_Range_length(lastA));
 
 				while (true) {
 					/* if there's a previous B block and the first value of the minimum A block is <= the last value of the previous B block */
-					if ((Range_length(lastB) > 0 && !compare(array[lastB.end - 1], min_value)) || Range_length(blockB) == 0) {
+					if ((wikisort_Range_length(lastB) > 0 && !compare(array[lastB.end - 1], min_value)) || wikisort_Range_length(blockB) == 0) {
 						/* figure out where to split the previous B block, and rotate it at the split */
 						long B_split = BinaryFirst(array, minA, lastB, compare);
 						long B_remaining = lastB.end - B_split;
@@ -569,7 +569,7 @@ void WikiSort(Test array[], const long size, const Comparison compare) {
 						Swap(array[blockA.start + 1], array[buffer1.start + indexA++]);
 
 						/* locally merge the previous A block with the B values that follow it, using the buffer as swap space */
-						WikiMerge(array, buffer2, lastA, MakeRange(lastA.end, B_split), compare, cache, cache_size);
+						WikiMerge(array, buffer2, lastA, wikisort_MakeRange(lastA.end, B_split), compare, cache, cache_size);
 
 						/* copy the previous A block into the cache or buffer2, since that's where we need it to be when we go to merge it anyway */
 						if (block_size <= cache_size)
@@ -583,10 +583,10 @@ void WikiSort(Test array[], const long size, const Comparison compare) {
 						BlockSwap(array, B_split, blockA.start + block_size - B_remaining, B_remaining);
 
 						/* now we need to update the ranges and stuff */
-						lastA = MakeRange(blockA.start - B_remaining, blockA.start - B_remaining + block_size);
-						lastB = MakeRange(lastA.end, lastA.end + B_remaining);
+						lastA = wikisort_MakeRange(blockA.start - B_remaining, blockA.start - B_remaining + block_size);
+						lastB = wikisort_MakeRange(lastA.end, lastA.end + B_remaining);
 						blockA.start += block_size;
-						if (Range_length(blockA) == 0)
+						if (wikisort_Range_length(blockA) == 0)
 							break;
 
 						/* search the second value of the remaining A blocks to find the new minimum A block (that's why we wrote unique values to them!) */
@@ -596,20 +596,20 @@ void WikiSort(Test array[], const long size, const Comparison compare) {
 						minA = minA - 1; /* decrement once to get back to the start of that A block */
 						min_value = array[minA];
 
-					} else if (Range_length(blockB) < block_size) {
+					} else if (wikisort_Range_length(blockB) < block_size) {
 						/* move the last B block, which is unevenly sized, to before the remaining A blocks, by using a rotation */
 						/* (using the cache is disabled since we have the contents of the previous A block in it!) */
-						Rotate(array, -Range_length(blockB), MakeRange(blockA.start, blockB.end), cache, 0);
-						lastB = MakeRange(blockA.start, blockA.start + Range_length(blockB));
-						blockA.start += Range_length(blockB);
-						blockA.end += Range_length(blockB);
-						minA += Range_length(blockB);
+						Rotate(array, -wikisort_Range_length(blockB), wikisort_MakeRange(blockA.start, blockB.end), cache, 0);
+						lastB = wikisort_MakeRange(blockA.start, blockA.start + wikisort_Range_length(blockB));
+						blockA.start += wikisort_Range_length(blockB);
+						blockA.end += wikisort_Range_length(blockB);
+						minA += wikisort_Range_length(blockB);
 						blockB.end = blockB.start;
 
 					} else {
 						/* roll the leftmost A block to the end by swapping it with the next B block */
 						BlockSwap(array, blockA.start, blockB.start, block_size);
-						lastB = MakeRange(blockA.start, blockA.start + block_size);
+						lastB = wikisort_MakeRange(blockA.start, blockA.start + block_size);
 						if (minA == blockA.start)
 							minA = blockA.end;
 
@@ -623,11 +623,11 @@ void WikiSort(Test array[], const long size, const Comparison compare) {
 				}
 
 				/* merge the last A block with the remaining B blocks */
-				WikiMerge(array, buffer2, lastA, MakeRange(lastA.end, B.end - Range_length(bufferB)), compare, cache, cache_size);
+				WikiMerge(array, buffer2, lastA, wikisort_MakeRange(lastA.end, B.end - wikisort_Range_length(bufferB)), compare, cache, cache_size);
 			}
 		}
 
-		if (Range_length(level1) > 0) {
+		if (wikisort_Range_length(level1) > 0) {
 			long level_start;
 
 			/* when we're finished with this step we should have b1 b2 left over, where one of the buffers is all jumbled up */
@@ -636,10 +636,10 @@ void WikiSort(Test array[], const long size, const Comparison compare) {
 
 			/* redistribute bufferA back into the array */
 			level_start = levelA.start;
-			for (index = levelA.end; Range_length(levelA) > 0; index++) {
+			for (index = levelA.end; wikisort_Range_length(levelA) > 0; index++) {
 				if (index == levelB.start || !compare(array[index], array[levelA.start])) {
 					long amount = index - levelA.end;
-					Rotate(array, -amount, MakeRange(levelA.start, index), cache, cache_size);
+					Rotate(array, -amount, wikisort_MakeRange(levelA.start, index), cache, cache_size);
 					levelA.start += (amount + 1);
 					levelA.end += amount;
 					index--;
@@ -647,10 +647,10 @@ void WikiSort(Test array[], const long size, const Comparison compare) {
 			}
 
 			/* redistribute bufferB back into the array */
-			for (index = levelB.start; Range_length(levelB) > 0; index--) {
+			for (index = levelB.start; wikisort_Range_length(levelB) > 0; index--) {
 				if (index == level_start || !compare(array[levelB.end - 1], array[index - 1])) {
 					long amount = levelB.start - index;
-					Rotate(array, amount, MakeRange(index, levelB.end), cache, cache_size);
+					Rotate(array, amount, wikisort_MakeRange(index, levelB.end), cache, cache_size);
 					levelB.start -= amount;
 					levelB.end -= (amount + 1);
 					index++;
