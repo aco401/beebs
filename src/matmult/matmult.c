@@ -108,7 +108,7 @@ values_match (long v1, long v2)
 
 
 int matmult_Seed;
-matrix ArrayA, ArrayB, ResultArray;
+matrix matmult_ArrayA, matmult_ArrayB, matmult_ResultArray;
 
 void Multiply(matrix A, matrix B, matrix Res);
 void matmult_InitSeed(void);
@@ -118,7 +118,7 @@ int matmult_RandomInteger(void);
 
 int beebs_matmult_benchmark()
 {
-   matmult_Test(ArrayA, ArrayB, ResultArray);
+   matmult_Test(matmult_ArrayA, matmult_ArrayB, matmult_ResultArray);
 
    return 0;
 }
@@ -151,7 +151,7 @@ int matmult_RandomInteger(void)
 }
 
 /*
- * Multiplies arrays A and B and stores the result in ResultArray.
+ * Multiplies arrays A and B and stores the result in matmult_ResultArray.
  */
 void Multiply(matrix A, matrix B, matrix Res)
 {
@@ -172,10 +172,10 @@ void beebs_matmult_initialise_benchmark() {
 
    for (OuterIndex = 0; OuterIndex < UPPERLIMIT; OuterIndex++)
       for (InnerIndex = 0; InnerIndex < UPPERLIMIT; InnerIndex++)
-         ArrayA[OuterIndex][InnerIndex] = RANDOM_VALUE;
+         matmult_ArrayA[OuterIndex][InnerIndex] = RANDOM_VALUE;
    for (OuterIndex = 0; OuterIndex < UPPERLIMIT; OuterIndex++)
       for (InnerIndex = 0; InnerIndex < UPPERLIMIT; InnerIndex++)
-         ArrayB[OuterIndex][InnerIndex] = RANDOM_VALUE;
+         matmult_ArrayB[OuterIndex][InnerIndex] = RANDOM_VALUE;
 }
 
 int beebs_matmult_verify_benchmark(int unused)
@@ -220,7 +220,7 @@ int beebs_matmult_verify_benchmark(int unused)
 #endif
   for (i=0; i<UPPERLIMIT; i++)
     for (j=0; j<UPPERLIMIT; j++)
-      if (ResultArray[i][j] != exp[i][j])
+      if (matmult_ResultArray[i][j] != exp[i][j])
         return 0;
   return 1;
 }
