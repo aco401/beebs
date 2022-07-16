@@ -187,7 +187,11 @@ long out_data[720]={
 0 };
 
 // To match size of input
+#ifndef BEEBS_FIR_SIZE
 #define OUTSIZE 720
+#else
+#define OUTSIZE BEEBS_FIR_SIZE
+#endif
 
 
 
@@ -293,7 +297,7 @@ beebs_fir_benchmark (void)
 {
   long  output[OUTSIZE];
 
-  fir_filter_int(in_data,output,700,fir_int,35,285);
+  fir_filter_int(in_data,output,OUTSIZE,fir_int,35,285);
   return 0;
 }
 
